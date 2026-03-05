@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kayo Melo Advogados — Direito Previdenciário &amp; Quilombola</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       VARIABLES — Azul Profundo + Azul Neon
+    ============================================================ */
+    :root { --trans: background-color .5s ease, color .5s ease, border-color .5s ease; }
+
+    [data-theme="dark"] {
+      --bg0:  #03060f;          /* azul noite profundo */
+      --bg1:  #060c1a;          /* fundo alternado */
+      --bgC:  #090f1f;          /* cards */
+      --bgCh: #0d1628;          /* card hover */
+      --bgN:  rgba(3,6,15,.94); /* nav */
+      --t1:   #e8f0ff;          /* texto primário — branco azulado */
+      --t2:   #7a9abf;          /* texto secundário */
+      --tm:   #2e4a6a;          /* texto muted */
+      --gold: #00d4ff;          /* azul neon principal */
+      --goldD:#0070a0;          /* neon escuro */
+      --goldB:#60eaff;          /* neon brilhante */
+      --bS:   rgba(0,212,255,.08);
+      --bC:   rgba(0,212,255,.14);
+      --bG:   rgba(0,212,255,.22);
+      --shC:  0 2px 28px rgba(0,0,0,.8), 0 1px 0 rgba(0,212,255,.06);
+      --shH:  0 14px 50px rgba(0,0,0,.9), 0 0 0 1px rgba(0,212,255,.35), 0 0 24px rgba(0,212,255,.08);
+      --heroG:radial-gradient(ellipse 70% 55% at 50% 45%, rgba(0,80,160,.22) 0%, transparent 65%),
+              radial-gradient(ellipse 40% 40% at 80% 20%, rgba(0,212,255,.06) 0%, transparent 50%),
+              linear-gradient(180deg,#03060f 0%,#060c1a 100%);
+      --nOp:  .04;
+      --tagB: rgba(0,212,255,.1);
+      --tagC: #00d4ff;
+      --div:  rgba(0,212,255,.08);
+      --fbG:  #060c1a;
+      --fbB:  rgba(0,212,255,.3);
+      /* glow neon extra */
+      --neon-glow: 0 0 12px rgba(0,212,255,.45), 0 0 32px rgba(0,212,255,.2);
+    }
+
+    [data-theme="light"] {
+      --bg0:  #eef4ff;          /* azul gelo */
+      --bg1:  #dde8f8;          /* fundo alternado */
+      --bgC:  #f5f9ff;          /* cards */
+      --bgCh: #ffffff;
+      --bgN:  rgba(238,244,255,.96);
+      --t1:   #070f1f;          /* quase preto azulado */
+      --t2:   #2a4a72;
+      --tm:   #7a9abf;
+      --gold: #005fa3;          /* azul escuro saturado */
+      --goldD:#003d78;
+      --goldB:#007bcc;
+      --bS:   rgba(0,80,160,.08);
+      --bC:   rgba(0,80,160,.14);
+      --bG:   rgba(0,95,163,.2);
+      --shC:  0 2px 20px rgba(0,60,120,.1);
+      --shH:  0 12px 40px rgba(0,60,120,.18), 0 0 0 1px rgba(0,95,163,.25);
+      --heroG:radial-gradient(ellipse 70% 55% at 50% 45%, rgba(0,100,200,.1) 0%, transparent 65%),
+              linear-gradient(180deg,#eef4ff 0%,#dde8f8 100%);
+      --nOp:  .02;
+      --tagB: rgba(0,95,163,.09);
+      --tagC: #005fa3;
+      --div:  rgba(0,80,160,.08);
+      --fbG:  #f5f9ff;
+      --fbB:  rgba(0,95,163,.28);
+      --neon-glow: none;
+    }
+
+    /* ============================================================ RESET */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg0);color:var(--t1);
+         transition:var(--trans);overflow-x:hidden;min-height:100vh}
+    body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity:var(--nOp);mix-blend-mode:overlay}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    ul{list-style:none}
+    ::-webkit-scrollbar{width:5px}
+    ::-webkit-scrollbar-track{background:var(--bg0)}
+    ::-webkit-scrollbar-thumb{background:var(--goldD);border-radius:3px}
+    [data-theme="dark"] ::-webkit-scrollbar-thumb{box-shadow:0 0 6px rgba(0,212,255,.4)}
+
+    /* ============================================================ NAVBAR */
+    .navbar{position:fixed;top:0;left:0;right:0;z-index:1000;
+      backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);
+      background:var(--bgN);border-bottom:1px solid var(--bS);
+      transition:var(--trans),box-shadow .3s}
+    .navbar.scrolled{box-shadow:0 4px 40px rgba(0,0,0,.6), 0 1px 0 rgba(0,212,255,.1)}
+    .nav-inner{max-width:1280px;margin:0 auto;padding:0 2rem;height:72px;
+      display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:2rem}
+
+    /* Logo */
+    .nav-logo{display:flex;align-items:center;gap:.85rem}
+    .km-mark{width:42px;height:42px;flex-shrink:0}
+    .km-mark svg{width:100%;height:100%}
+    [data-theme="dark"] .km-mark svg rect:first-child{filter:drop-shadow(0 0 4px rgba(0,212,255,.4))}
+    [data-theme="dark"] .km-mark svg path{filter:drop-shadow(0 0 3px rgba(0,212,255,.5))}
+    .logo-text{display:flex;flex-direction:column;line-height:1.1}
+    .logo-name{font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;
+      letter-spacing:.12em;text-transform:uppercase;color:var(--t1);transition:color .5s}
+    .logo-sub{font-size:.6rem;font-weight:500;letter-spacing:.22em;
+      text-transform:uppercase;color:var(--gold);transition:color .5s}
+
+    /* Nav links */
+    .nav-links{display:flex;align-items:center;justify-content:center;gap:.15rem}
+    .nav-links a{font-size:.77rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--t2);padding:.45rem .9rem;border-radius:5px;transition:color .3s;position:relative}
+    .nav-links a::after{content:'';position:absolute;bottom:5px;left:50%;
+      transform:translateX(-50%) scaleX(0);width:50%;height:1px;
+      background:var(--gold);transition:transform .3s}
+    .nav-links a:hover{color:var(--t1)}
+    .nav-links a:hover::after{transform:translateX(-50%) scaleX(1)}
+
+    /* Actions */
+    .nav-actions{display:flex;align-items:center;gap:1rem}
+    .btn-cta-nav{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+      color:#03060f;background:var(--gold);border:none;padding:.54rem 1.15rem;
+      border-radius:4px;cursor:pointer;transition:opacity .25s,transform .2s}
+    [data-theme="light"] .btn-cta-nav{color:#fff;background:#005fa3}
+    .btn-cta-nav:hover{opacity:.8;transform:translateY(-1px)}
+
+    .theme-toggle{width:44px;height:24px;background:var(--bC);border:1px solid var(--bC);
+      border-radius:999px;cursor:pointer;position:relative;transition:background .4s,border-color .4s;flex-shrink:0}
+    .theme-toggle::after{content:'';position:absolute;top:2px;left:2px;
+      width:18px;height:18px;background:var(--gold);border-radius:50%;
+      transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+    [data-theme="light"] .theme-toggle::after{transform:translateX(20px)}
+
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--t1);border-radius:2px;transition:all .3s}
+
+    .mobile-nav{display:none;position:fixed;inset:0;top:72px;background:var(--bg0);
+      z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
+    .mobile-nav.open{display:flex}
+    .mobile-nav a{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;
+      color:var(--t1);transition:color .3s}
+    .mobile-nav a:hover{color:var(--gold)}
+
+    /* ============================================================ HERO */
+    .hero{min-height:100vh;padding-top:72px;display:flex;align-items:center;
+      background:var(--heroG);position:relative;overflow:hidden}
+
+    .hero-grid{position:absolute;inset:0;pointer-events:none;
+      background-image:
+        linear-gradient(rgba(0,212,255,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,212,255,.035) 1px,transparent 1px);
+      background-size:80px 80px}
+
+    /* Neon orb pulse no hero */
+    .hero-orb{position:absolute;width:520px;height:520px;border-radius:50%;
+      background:radial-gradient(circle,rgba(0,80,180,.2) 0%,rgba(0,212,255,.05) 45%,transparent 70%);
+      top:50%;left:50%;transform:translate(-50%,-50%);
+      pointer-events:none;animation:orbPulse 8s ease-in-out infinite}
+    [data-theme="light"] .hero-orb{background:radial-gradient(circle,rgba(0,80,160,.08) 0%,rgba(0,120,220,.03) 45%,transparent 70%)}
+    @keyframes orbPulse{
+      0%,100%{transform:translate(-50%,-50%) scale(1);opacity:1}
+      50%{transform:translate(-50%,-50%) scale(1.18);opacity:.5}
+    }
+
+    .hero-wm{position:absolute;right:-3rem;top:50%;transform:translateY(-50%);
+      font-family:'DM Sans',sans-serif;font-size:28vw;font-weight:900;
+      letter-spacing:-.05em;color:var(--t1);opacity:.018;
+      pointer-events:none;user-select:none;line-height:1}
+
+    .hero-inner{max-width:1280px;margin:0 auto;padding:6rem 2rem 4rem;width:100%;
+      display:grid;grid-template-columns:1fr 380px;gap:4rem;align-items:center}
+
+    .hero-badge{display:inline-flex;align-items:center;gap:.6rem;
+      font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+      color:var(--gold);border:1px solid var(--bG);border-radius:3px;
+      padding:.4rem 1rem;margin-bottom:2rem;animation:fadeUp .8s ease both}
+    .hero-dot{width:5px;height:5px;background:var(--gold);border-radius:50%;
+      animation:blink 2s ease-in-out infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+    .hero-title{font-family:'Playfair Display',serif;
+      font-size:clamp(3rem,5.8vw,5.8rem);font-weight:900;line-height:1.02;
+      letter-spacing:-.025em;color:var(--t1);margin-bottom:1.5rem;
+      animation:fadeUp .8s .12s ease both}
+    .hero-title em{font-style:italic;display:block;
+      background:linear-gradient(105deg,var(--t1) 20%,var(--gold) 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      filter:drop-shadow(0 0 18px rgba(0,212,255,.35))}
+    [data-theme="light"] .hero-title em{
+      background:linear-gradient(105deg,#070f1f 0%,var(--gold) 100%);
+      -webkit-background-clip:text;background-clip:text;filter:none}
+
+    .hero-desc{font-family:'Crimson Pro',serif;font-size:1.2rem;line-height:1.8;
+      color:var(--t2);max-width:510px;margin-bottom:2.5rem;
+      animation:fadeUp .8s .24s ease both}
+
+    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .8s .36s ease both}
+
+    /* Buttons */
+    .btn-primary{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+      color:#03060f;background:var(--gold);border:none;padding:.9rem 2rem;
+      border-radius:4px;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;
+      transition:transform .25s,box-shadow .25s,opacity .25s}
+    [data-theme="light"] .btn-primary{color:#fff;background:#005fa3}
+    .btn-primary:hover{opacity:.88;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.4),0 0 20px rgba(0,212,255,.3)}
+    [data-theme="light"] .btn-primary:hover{box-shadow:0 8px 24px rgba(0,60,120,.3)}
+
+    .btn-outline{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--gold);background:transparent;border:1px solid var(--bG);
+      padding:.9rem 2rem;border-radius:4px;cursor:pointer;
+      display:inline-flex;align-items:center;gap:.5rem;transition:all .25s}
+    .btn-outline:hover{background:var(--tagB);transform:translateY(-2px)}
+
+    /* Hero card */
+    .hero-card{background:var(--bgC);border:1px solid var(--bC);border-radius:10px;
+      overflow:hidden;box-shadow:var(--shC);animation:fadeRight .9s .2s ease both;
+      transition:var(--trans),box-shadow .3s}
+    .hc-img{width:100%;height:195px;background:linear-gradient(145deg,#03060f 0%,#060f20 100%);
+      display:flex;align-items:center;justify-content:center}
+    [data-theme="light"] .hc-img{background:linear-gradient(145deg,#bed2ee 0%,#a8c0e4 100%)}
+    .hc-body{padding:1.4rem}
+    .hc-tag{font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+      color:var(--gold);background:var(--tagB);padding:.28rem .65rem;
+      border-radius:3px;display:inline-block;margin-bottom:.7rem}
+    .hc-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;
+      line-height:1.38;color:var(--t1);margin-bottom:.7rem}
+    .hc-excerpt{font-size:.83rem;line-height:1.65;color:var(--t2);margin-bottom:1.2rem}
+    .hc-meta{display:flex;align-items:center;justify-content:space-between;
+      font-size:.72rem;color:var(--tm)}
+    .hc-author{display:flex;align-items:center;gap:.5rem}
+    .av{width:26px;height:26px;border-radius:50%;background:var(--gold);color:#03060f;
+      display:flex;align-items:center;justify-content:center;
+      font-size:.58rem;font-weight:800;letter-spacing:.04em}
+    [data-theme="light"] .av{background:var(--gold);color:#fff}
+
+    /* ============================================================ SECTIONS */
+    section{padding:6rem 0}
+    .container{max-width:1280px;margin:0 auto;padding:0 2rem}
+    .section-header{margin-bottom:3.5rem;display:flex;align-items:flex-end;
+      justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+      color:var(--gold);margin-bottom:.7rem;display:flex;align-items:center;gap:.75rem}
+    .eyebrow::before{content:'';width:22px;height:1px;background:var(--gold)}
+    .section-title{font-family:'Playfair Display',serif;
+      font-size:clamp(1.8rem,3.2vw,2.7rem);font-weight:800;line-height:1.12;color:var(--t1)}
+    .section-title em{font-style:italic;color:var(--gold)}
+    .section-link{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--gold);display:inline-flex;align-items:center;gap:.5rem;
+      border-bottom:1px solid var(--bG);padding-bottom:2px;white-space:nowrap;
+      transition:gap .3s,border-color .3s}
+    .section-link:hover{gap:.75rem;border-color:var(--gold)}
+
+    /* ============================================================ FEATURED */
+    .feat-sec{background:var(--bg1);transition:var(--trans)}
+    .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;
+      border-radius:10px;overflow:hidden;border:1px solid var(--bC)}
+    .feat-main{background:var(--bgC);overflow:hidden;cursor:pointer}
+    .feat-img{width:100%;height:370px;
+      background:linear-gradient(160deg,#03060f 0%,#06101e 100%);
+      display:flex;align-items:center;justify-content:center;
+      transition:transform .5s;overflow:hidden}
+    [data-theme="light"] .feat-img{background:linear-gradient(160deg,#bed4f0 0%,#a8c2e8 100%)}
+    .feat-main:hover .feat-img{transform:scale(1.03)}
+    .feat-body{padding:1.8rem}
+    .feat-right{display:flex;flex-direction:column}
+    .feat-sub{flex:1;background:var(--bgC);padding:1.5rem;cursor:pointer;
+      border-bottom:1px solid var(--bS);transition:background .3s}
+    .feat-sub:last-child{border-bottom:none}
+    .feat-sub:hover{background:var(--bgCh)}
+    .feat-sub-img{width:100%;height:105px;border-radius:7px;overflow:hidden;margin-bottom:.9rem}
+    .feat-sub-img-in{width:100%;height:100%;display:flex;align-items:center;
+      justify-content:center;transition:transform .4s}
+    .feat-sub:hover .feat-sub-img-in{transform:scale(1.05)}
+
+    /* ============================================================ BLOG GRID */
+    .blog-sec{background:var(--bg0);transition:var(--trans)}
+    .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+    .blog-card{background:var(--bgC);border:1px solid var(--bC);border-radius:9px;
+      overflow:hidden;box-shadow:var(--shC);cursor:pointer;
+      display:flex;flex-direction:column;
+      transition:transform .35s cubic-bezier(.23,1,.32,1),box-shadow .35s,background .5s}
+    .blog-card:hover{transform:translateY(-6px);box-shadow:var(--shH)}
+    .bc-img{width:100%;height:170px;overflow:hidden}
+    .bc-img-in{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+      transition:transform .5s}
+    .blog-card:hover .bc-img-in{transform:scale(1.06)}
+
+    /* Card image themes — azuis profundos com toque neon */
+    .t1{background:linear-gradient(145deg,#03060f 0%,#060f20 100%)}
+    .t2{background:linear-gradient(145deg,#04091a 0%,#080f22 100%)}
+    .t3{background:linear-gradient(145deg,#020510 0%,#05091c 100%)}
+    .t4{background:linear-gradient(145deg,#030814 0%,#060d20 100%)}
+    .t5{background:linear-gradient(145deg,#040a1c 0%,#081020 100%)}
+    .t6{background:linear-gradient(145deg,#030714 0%,#070c1a 100%)}
+    [data-theme="light"] .t1{background:linear-gradient(145deg,#c8d8f0 0%,#b0c4e8 100%)}
+    [data-theme="light"] .t2{background:linear-gradient(145deg,#bed2ee 0%,#a8c0e4 100%)}
+    [data-theme="light"] .t3{background:linear-gradient(145deg,#ccdaf2 0%,#b4c8ea 100%)}
+    [data-theme="light"] .t4{background:linear-gradient(145deg,#c0ccec 0%,#a8bce4 100%)}
+    [data-theme="light"] .t5{background:linear-gradient(145deg,#c4d0ee 0%,#acc2e6 100%)}
+    [data-theme="light"] .t6{background:linear-gradient(145deg,#bacce8 0%,#a2bce0 100%)}
+
+    .bc-body{padding:1.3rem;flex:1;display:flex;flex-direction:column}
+    .tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.8rem}
+    .tag{font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+      color:var(--tagC);background:var(--tagB);padding:.22rem .55rem;
+      border-radius:3px;transition:background .3s}
+    .blog-card:hover .tag{background:rgba(0,212,255,.18)}
+    [data-theme="light"] .blog-card:hover .tag{background:rgba(0,95,163,.14)}
+    .bc-title{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:700;
+      line-height:1.4;color:var(--t1);margin-bottom:.7rem;flex:1;transition:color .3s}
+    .blog-card:hover .bc-title{color:var(--gold)}
+    .bc-excerpt{font-size:.82rem;line-height:1.65;color:var(--t2);margin-bottom:1.1rem;
+      display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .bc-footer{display:flex;align-items:center;justify-content:space-between;
+      padding-top:.9rem;border-top:1px solid var(--bS);font-size:.72rem;color:var(--tm)}
+    .bc-read{font-size:.72rem;font-weight:700;letter-spacing:.06em;color:var(--gold);
+      display:flex;align-items:center;gap:.3rem;transition:gap .3s}
+    .blog-card:hover .bc-read{gap:.5rem}
+
+    /* ============================================================ AREAS */
+    .areas-sec{background:var(--bg1);transition:var(--trans)}
+    .areas-wrap{border:1px solid var(--bC);border-radius:10px;overflow:hidden}
+    .areas-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+    .area-card{background:var(--bgC);padding:2rem 1.5rem;
+      border-right:1px solid var(--bS);border-bottom:1px solid var(--bS);
+      transition:background .3s}
+    .area-card:hover{background:var(--bgCh)}
+    .area-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;
+      line-height:1;color:var(--bC);margin-bottom:.85rem;transition:color .3s}
+    .area-card:hover .area-num{color:var(--gold)}
+    .area-icon{font-size:1.45rem;margin-bottom:.8rem}
+    .area-title{font-family:'Playfair Display',serif;font-size:.93rem;font-weight:700;
+      color:var(--t1);margin-bottom:.52rem}
+    .area-desc{font-size:.79rem;line-height:1.65;color:var(--t2)}
+
+    /* ============================================================ SOBRE */
+    .about-sec{background:var(--bg0);transition:var(--trans)}
+    .about-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .about-vis{position:relative}
+    .about-portrait{width:100%;aspect-ratio:4/5;max-width:380px;border-radius:10px;
+      background:linear-gradient(160deg,#03060f 0%,#060f1e 100%);
+      display:flex;align-items:center;justify-content:center;
+      border:1px solid var(--bC);box-shadow:var(--shC);overflow:hidden}
+    [data-theme="light"] .about-portrait{background:linear-gradient(160deg,#bed4f0 0%,#a8c0e4 100%)}
+    .about-accent{position:absolute;bottom:-1.5rem;right:-1.5rem;
+      background:var(--gold);color:#03060f;
+      border-radius:8px;padding:1.2rem 1.5rem;
+      box-shadow:0 8px 32px rgba(0,0,0,.5), var(--neon-glow)}
+    [data-theme="light"] .about-accent{background:var(--gold);color:#fff;box-shadow:0 8px 32px rgba(0,60,120,.3)}
+    .about-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;
+      line-height:1;display:block;color:var(--gold)}
+    .about-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;
+      text-transform:uppercase;opacity:.75}
+    .about-bio{font-family:'Crimson Pro',serif;font-size:1.1rem;line-height:1.82;
+      color:var(--t2);margin-top:1.5rem;margin-bottom:2rem}
+    .about-creds{display:flex;flex-direction:column;gap:.7rem;margin-bottom:2.5rem}
+    .cred{display:flex;align-items:flex-start;gap:.75rem;font-size:.84rem;color:var(--t2)}
+    .cred::before{content:'';width:4px;height:4px;background:var(--gold);
+      border-radius:50%;flex-shrink:0;margin-top:.5rem}
+
+    /* ============================================================ NEWSLETTER */
+    .nl-sec{background:var(--bg1);transition:var(--trans)}
+    .nl-box{background:var(--bgC);border:1px solid var(--bC);border-radius:12px;
+      padding:3.5rem;text-align:center;position:relative;overflow:hidden;
+      box-shadow:var(--shC)}
+    .nl-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+      background:linear-gradient(90deg,transparent,var(--gold),transparent);
+      box-shadow:0 0 8px var(--gold)}
+    .nl-title{font-family:'Playfair Display',serif;
+      font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:var(--t1);margin-bottom:.7rem}
+    .nl-desc{font-size:1rem;color:var(--t2);margin-bottom:2rem}
+    .nl-form{display:flex;gap:.75rem;max-width:460px;margin:0 auto}
+    .nl-input{flex:1;font-family:'DM Sans',sans-serif;font-size:.875rem;color:var(--t1);
+      background:var(--bg1);border:1px solid var(--bC);border-radius:4px;
+      padding:.85rem 1.1rem;outline:none;transition:border-color .3s}
+    .nl-input:focus{border-color:var(--gold)}
+    .nl-input::placeholder{color:var(--tm)}
+
+    /* ============================================================ FOOTER */
+    footer{background:var(--bg1);border-top:1px solid var(--bS);
+      padding:4.5rem 0 2rem;transition:var(--trans)}
+    .footer-inner{max-width:1280px;margin:0 auto;padding:0 2rem}
+    .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+    .fbrand{font-family:'Crimson Pro',serif;font-size:1rem;line-height:1.75;
+      color:var(--t2);margin:1rem 0 1.5rem}
+    .fsocial{display:flex;gap:.65rem}
+    .fsoc{width:36px;height:36px;border-radius:6px;background:var(--tagB);
+      border:1px solid var(--bC);display:flex;align-items:center;justify-content:center;
+      color:var(--gold);transition:all .3s;cursor:pointer}
+    .fsoc:hover{background:var(--gold);color:#03060f;border-color:var(--gold)}
+    [data-theme="light"] .fsoc:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+    .fcol-title{font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:700;
+      letter-spacing:.16em;text-transform:uppercase;color:var(--t1);margin-bottom:1.2rem}
+    .flinks{display:flex;flex-direction:column;gap:.6rem}
+    .flinks a{font-size:.84rem;color:var(--t2);transition:color .3s}
+    .flinks a:hover{color:var(--gold)}
+    .footer-bottom{display:flex;align-items:center;justify-content:space-between;
+      padding-top:2rem;border-top:1px solid var(--bS);gap:1rem;flex-wrap:wrap}
+    .fcopy{font-size:.75rem;color:var(--tm)}
+
+    /* ============================================================ FLOATING */
+    .float-wrap{position:fixed;bottom:2rem;right:2rem;
+      display:flex;flex-direction:column;gap:.75rem;z-index:900}
+    .fbtn{width:52px;height:52px;border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+      background:var(--fbG);border:1px solid var(--fbB);
+      box-shadow:0 4px 20px rgba(0,0,0,.45);
+      transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s;
+      position:relative;cursor:pointer}
+    .fbtn::before{content:attr(data-label);position:absolute;
+      right:calc(100% + .75rem);top:50%;transform:translateY(-50%);
+      font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:700;
+      letter-spacing:.08em;white-space:nowrap;
+      background:var(--fbG);color:var(--t1);border:1px solid var(--fbB);
+      padding:.3rem .65rem;border-radius:4px;opacity:0;pointer-events:none;transition:opacity .2s}
+    .fbtn:hover::before{opacity:1}
+    .fbtn:hover{transform:scale(1.12);box-shadow:0 8px 32px rgba(0,0,0,.5)}
+    .fw{color:#25D366}.ft{color:#0088cc}
+
+    /* ============================================================ ANIMATIONS */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeRight{from{opacity:0;transform:translateX(22px)}to{opacity:1;transform:translateX(0)}}
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    /* ============================================================ RESPONSIVE */
+    @media(max-width:1024px){
+      .hero-inner{grid-template-columns:1fr}
+      .hero-card{display:none}
+      .blog-grid{grid-template-columns:repeat(2,1fr)}
+      .areas-grid{grid-template-columns:repeat(2,1fr)}
+      .footer-top{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:768px){
+      .nav-links,.btn-cta-nav{display:none}
+      .hamburger{display:flex}
+      .nav-inner{grid-template-columns:auto 1fr auto auto;gap:1rem}
+      .hero-inner{padding:4rem 1.5rem 3rem}
+      .hero-title{font-size:2.6rem}
+      .hero-wm{display:none}
+      .feat-grid{grid-template-columns:1fr}
+      .blog-grid{grid-template-columns:1fr}
+      .areas-grid{grid-template-columns:1fr 1fr}
+      .about-inner{grid-template-columns:1fr}
+      .about-vis{display:none}
+      .nl-form{flex-direction:column}
+      .footer-top{grid-template-columns:1fr;gap:2rem}
+      .footer-bottom{flex-direction:column;text-align:center}
+      section{padding:4rem 0}
+    }
+    @media(max-width:480px){
+      .areas-grid{grid-template-columns:1fr}
+      .hero-actions{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR ================================================== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+
+      <a href="#" class="nav-logo">
+        <div class="km-mark">
+          <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Frame duplo da logo -->
+            <rect x="1" y="1" width="40" height="40" rx="1"
+                  stroke="currentColor" stroke-width="1.8"
+                  style="color:var(--t1)"/>
+            <rect x="5" y="5" width="32" height="32" rx=".5"
+                  stroke="currentColor" stroke-width=".8"
+                  style="color:var(--t1);opacity:.35"/>
+            <!-- K -->
+            <path d="M10 13 L10 29 M10 21 L18 13 M10 21 L18 29"
+                  stroke="currentColor" stroke-width="2.3"
+                  stroke-linecap="round" stroke-linejoin="round"
+                  style="color:var(--t1)"/>
+            <!-- M -->
+            <path d="M20 29 L20 13 L26 21 L32 13 L32 29"
+                  stroke="currentColor" stroke-width="2.3"
+                  stroke-linecap="round" stroke-linejoin="round"
+                  style="color:var(--t1)"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-name">Kayo Melo</span>
+          <span class="logo-sub">Advogados</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#artigos">Artigos</a></li>
+        <li><a href="#areas">Atuação</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="btn-cta-nav"
+          onclick="document.querySelector('#contato').scrollIntoView({behavior:'smooth'})">
+          Consulta
+        </button>
+        <button class="theme-toggle" id="themeToggle"
+                aria-label="Dark/Light" title="Modo Claro / Escuro"></button>
+        <div class="hamburger" id="hamburger" onclick="toggleNav()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#inicio"  onclick="toggleNav()">Início</a>
+    <a href="#artigos" onclick="toggleNav()">Artigos</a>
+    <a href="#areas"   onclick="toggleNav()">Atuação</a>
+    <a href="#sobre"   onclick="toggleNav()">Sobre</a>
+    <a href="#contato" onclick="toggleNav()">Contato</a>
+  </div>
+
+
+  <!-- HERO ==================================================== -->
+  <section class="hero" id="inicio">
+    <div class="hero-grid"></div>
+    <div class="hero-orb"></div>
+    <div class="hero-wm">KM</div>
+
+    <div class="hero-inner container">
+      <div>
+        <div class="hero-badge">
+          <span class="hero-dot"></span>
+          Portal Jurídico Especializado
+        </div>
+
+        <h1 class="hero-title">
+          Direito com
+          <em>Raiz e Rigor</em>
+        </h1>
+
+        <p class="hero-desc">
+          Kayo Melo Advogados — advocacia especializada em Direito Previdenciário
+          e Territorial Quilombola. Técnica de elite, compromisso histórico.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn-primary"
+            onclick="document.querySelector('#artigos').scrollIntoView({behavior:'smooth'})">
+            Explorar Artigos
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <path d="M2.5 6.5h8M6.5 2.5l4 4-4 4"
+                    stroke="currentColor" stroke-width="1.7"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="btn-outline"
+            onclick="document.querySelector('#sobre').scrollIntoView({behavior:'smooth'})">
+            Conheça o Escritório
+          </button>
+        </div>
+      </div>
+
+      <!-- Card lateral -->
+      <div class="hero-card">
+        <div class="hc-img">
+          <svg width="88" height="88" viewBox="0 0 88 88" fill="none">
+            <rect x="4" y="4" width="80" height="80" rx="1"
+                  stroke="rgba(0,212,255,.22)" stroke-width="1.5"/>
+            <rect x="12" y="12" width="64" height="64" rx="1"
+                  stroke="rgba(0,212,255,.12)" stroke-width="1"/>
+            <path d="M22 22 L44 44 L66 22 M22 66 L44 44 L66 66"
+                  stroke="rgba(0,212,255,.42)" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <circle cx="44" cy="44" r="6" fill="rgba(0,212,255,.5)"/>
+          </svg>
+        </div>
+        <div class="hc-body">
+          <span class="hc-tag">Destaque</span>
+          <h3 class="hc-title">Território Quilombola: o que muda com a nova regulamentação</h3>
+          <p class="hc-excerpt">As recentes alterações na política de regularização fundiária impactam diretamente as comunidades. Saiba seus direitos.</p>
+          <div class="hc-meta">
+            <div class="hc-author">
+              <div class="av">KM</div>
+              <span>Kayo Melo Advogados</span>
+            </div>
+            <span>8 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- DESTAQUES =============================================== -->
+  <section class="feat-sec" id="artigos">
+    <div class="container">
+      <div class="section-header reveal">
+        <div>
+          <div class="eyebrow">Em Destaque</div>
+          <h2 class="section-title">Análises <em>Recentes</em></h2>
+        </div>
+        <a href="#" class="section-link">
+          Ver todos
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+            <path d="M2.5 6.5h8M6.5 2.5l4 4-4 4" stroke="currentColor"
+                  stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="feat-grid reveal">
+        <div class="feat-main">
+          <div class="feat-img">
+            <svg width="88" height="88" viewBox="0 0 88 88" fill="none">
+              <rect x="4" y="4" width="80" height="80" rx="1"
+                    stroke="rgba(0,212,255,.2)" stroke-width="1.5"/>
+              <path d="M44 14 L74 44 L44 74 L14 44 Z"
+                    stroke="rgba(0,212,255,.38)" stroke-width="1.5"
+                    fill="rgba(0,212,255,.04)"/>
+              <line x1="14" y1="44" x2="74" y2="44"
+                    stroke="rgba(0,212,255,.16)" stroke-width="1"/>
+              <line x1="44" y1="14" x2="44" y2="74"
+                    stroke="rgba(0,212,255,.16)" stroke-width="1"/>
+              <circle cx="44" cy="44" r="7" fill="rgba(0,212,255,.5)"/>
+            </svg>
+          </div>
+          <div class="feat-body">
+            <div class="tags">
+              <span class="tag">Território</span>
+              <span class="tag">Quilombola</span>
+            </div>
+            <h3 class="bc-title" style="font-size:1.18rem;margin-bottom:.8rem;">
+              Demarcação de Terras Quilombolas: Jurisprudência do STF e o Caminho para Regularização
+            </h3>
+            <p class="bc-excerpt" style="margin-bottom:1rem;">
+              O Supremo Tribunal Federal consolidou importantes precedentes sobre titulação de territórios tradicionais. Analisamos as decisões recentes e seus impactos práticos.
+            </p>
+            <div class="bc-footer">
+              <div class="hc-author">
+                <div class="av">KM</div>
+                <div>
+                  <div style="font-size:.78rem;color:var(--t1);font-weight:600;">Kayo Melo Advogados</div>
+                  <div style="font-size:.7rem;color:var(--tm);">12 Jun 2025</div>
+                </div>
+              </div>
+              <span class="bc-read">Ler artigo →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="feat-right">
+          <div class="feat-sub">
+            <div class="feat-sub-img">
+              <div class="feat-sub-img-in t2">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                  <circle cx="18" cy="18" r="16" stroke="rgba(0,212,255,.35)" stroke-width="1.5"/>
+                  <path d="M18 6 L30 18 L18 30 L6 18 Z"
+                        stroke="rgba(0,212,255,.5)" stroke-width="1.5" fill="none"/>
+                  <circle cx="18" cy="18" r="3.5" fill="rgba(0,212,255,.6)"/>
+                </svg>
+              </div>
+            </div>
+            <div class="tags"><span class="tag">Aposentadoria</span><span class="tag">Rural</span></div>
+            <h4 class="bc-title" style="font-size:.9rem;">
+              Aposentadoria Rural para Trabalhadores Quilombolas: Requisitos e Procedimentos
+            </h4>
+            <div class="bc-footer" style="padding-top:.7rem;">
+              <span style="font-size:.72rem;color:var(--tm);">Kayo Melo Adv. · 5 Jun 2025</span>
+              <span class="bc-read">Ler →</span>
+            </div>
+          </div>
+          <div class="feat-sub">
+            <div class="feat-sub-img">
+              <div class="feat-sub-img-in t3">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                  <rect x="8" y="8" width="20" height="20" rx="1"
+                        stroke="rgba(0,212,255,.4)" stroke-width="1.5" fill="none"/>
+                  <line x1="8" y1="18" x2="28" y2="18" stroke="rgba(0,212,255,.25)" stroke-width="1"/>
+                  <line x1="18" y1="8" x2="18" y2="28" stroke="rgba(0,212,255,.25)" stroke-width="1"/>
+                  <circle cx="18" cy="18" r="4" fill="rgba(0,212,255,.45)"/>
+                </svg>
+              </div>
+            </div>
+            <div class="tags"><span class="tag">BPC/LOAS</span><span class="tag">Direitos</span></div>
+            <h4 class="bc-title" style="font-size:.9rem;">
+              BPC e Pessoas com Deficiência em Territórios Tradicionais: Como Garantir o Benefício
+            </h4>
+            <div class="bc-footer" style="padding-top:.7rem;">
+              <span style="font-size:.72rem;color:var(--tm);">Kayo Melo Adv. · 28 Mai 2025</span>
+              <span class="bc-read">Ler →</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- BLOG GRID =============================================== -->
+  <section class="blog-sec">
+    <div class="container">
+      <div class="section-header reveal">
+        <div>
+          <div class="eyebrow">Publicações</div>
+          <h2 class="section-title">Todos os <em>Artigos</em></h2>
+        </div>
+      </div>
+      <div class="blog-grid">
+
+        <article class="blog-card reveal">
+          <div class="bc-img"><div class="bc-img-in t1">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+              <circle cx="25" cy="25" r="22" stroke="rgba(0,212,255,.3)" stroke-width="1.5"/>
+              <path d="M25 11 L39 25 L25 39 L11 25 Z"
+                    stroke="rgba(0,212,255,.5)" stroke-width="1.5" fill="rgba(0,212,255,.05)"/>
+              <circle cx="25" cy="25" r="4" fill="rgba(0,212,255,.55)"/>
+            </svg>
+          </div></div>
+          <div class="bc-body">
+            <div class="tags"><span class="tag">Aposentadoria</span><span class="tag">Previdência</span></div>
+            <h3 class="bc-title">Tempo de Serviço Especial: Como Quilombolas Comprovam Atividade Insalubre</h3>
+            <p class="bc-excerpt">A legislação previdenciária permite conversão de tempo especial em comum, beneficiando trabalhadores rurais expostos a agentes nocivos.</p>
+            <div class="bc-footer">
+              <span>Kayo Melo Adv. · 2 Jun 2025</span>
+              <span class="bc-read">Ler <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="display:inline"><path d="M1.5 5.5h8M5.5 1.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card reveal">
+          <div class="bc-img"><div class="bc-img-in t2">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+              <rect x="13" y="13" width="24" height="24" rx="2"
+                    stroke="rgba(0,212,255,.4)" stroke-width="1.5" fill="none"/>
+              <line x1="13" y1="25" x2="37" y2="25" stroke="rgba(0,212,255,.25)" stroke-width="1"/>
+              <line x1="25" y1="13" x2="25" y2="37" stroke="rgba(0,212,255,.25)" stroke-width="1"/>
+              <circle cx="25" cy="25" r="4.5" fill="rgba(0,212,255,.45)"/>
+            </svg>
+          </div></div>
+          <div class="bc-body">
+            <div class="tags"><span class="tag">Território</span><span class="tag">INCRA</span></div>
+            <h3 class="bc-title">Titulação pelo INCRA: Etapas, Prazos e Recursos Administrativos</h3>
+            <p class="bc-excerpt">Entenda o fluxo burocrático do processo de regularização fundiária quilombola e estratégias que aceleram a titulação coletiva.</p>
+            <div class="bc-footer">
+              <span>Kayo Melo Adv. · 25 Mai 2025</span>
+              <span class="bc-read">Ler <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="display:inline"><path d="M1.5 5.5h8M5.5 1.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card reveal">
+          <div class="bc-img"><div class="bc-img-in t3">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+              <circle cx="25" cy="25" r="20" stroke="rgba(0,212,255,.22)" stroke-width="1" stroke-dasharray="3 5"/>
+              <path d="M25 11 L37 25 L25 39 L13 25 Z"
+                    stroke="rgba(0,212,255,.42)" stroke-width="1.5" fill="rgba(0,212,255,.06)"/>
+              <circle cx="25" cy="25" r="3.5" fill="rgba(0,212,255,.5)"/>
+            </svg>
+          </div></div>
+          <div class="bc-body">
+            <div class="tags"><span class="tag">Inventário</span><span class="tag">Herança</span></div>
+            <h3 class="bc-title">Inventário em Comunidades Quilombolas: Posse Coletiva e Regime Sucessório</h3>
+            <p class="bc-excerpt">A transmissão de bens em territórios de uso coletivo segue regras distintas. Como proteger o patrimônio comunitário nas questões sucessórias.</p>
+            <div class="bc-footer">
+              <span>Kayo Melo Adv. · 18 Mai 2025</span>
+              <span class="bc-read">Ler <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="display:inline"><path d="M1.5 5.5h8M5.5 1.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card reveal">
+          <div class="bc-img"><div class="bc-img-in t4">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+              <polygon points="25,6 44,40 6,40"
+                       stroke="rgba(0,212,255,.4)" stroke-width="1.5" fill="rgba(0,212,255,.04)"/>
+              <circle cx="25" cy="30" r="3.5" fill="rgba(0,212,255,.5)"/>
+              <line x1="25" y1="14" x2="25" y2="22" stroke="rgba(0,212,255,.4)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div></div>
+          <div class="bc-body">
+            <div class="tags"><span class="tag">Pensão</span><span class="tag">INSS</span></div>
+            <h3 class="bc-title">Pensão por Morte em Comunidades Tradicionais: Direitos e Procedimentos</h3>
+            <p class="bc-excerpt">Membros de comunidades quilombolas têm direito à pensão mesmo sem registros formais. Como comprovar a união estável nesses casos.</p>
+            <div class="bc-footer">
+              <span>Kayo Melo Adv. · 10 Mai 2025</span>
+              <span class="bc-read">Ler <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="display:inline"><path d="M1.5 5.5h8M5.5 1.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card reveal">
+          <div class="bc-img"><div class="bc-img-in t5">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+              <circle cx="25" cy="25" r="19" stroke="rgba(0,212,255,.35)" stroke-width="1.5"/>
+              <path d="M25 12 L37 38 L13 38 Z"
+                    stroke="rgba(0,212,255,.5)" stroke-width="1.5" fill="rgba(0,212,255,.06)"/>
+              <circle cx="25" cy="22" r="3" fill="rgba(0,212,255,.55)"/>
+            </svg>
+          </div></div>
+          <div class="bc-body">
+            <div class="tags"><span class="tag">Saúde</span><span class="tag">Direitos</span></div>
+            <h3 class="bc-title">Acesso à Saúde em Territórios Remotos: Como Exigir Atendimento Especializado</h3>
+            <p class="bc-excerpt">A Constituição garante saúde universal, mas quilombolas enfrentam barreiras concretas. Quando e como acionar o Judiciário para garantir tratamentos.</p>
+            <div class="bc-footer">
+              <span>Kayo Melo Adv. · 3 Mai 2025</span>
+              <span class="bc-read">Ler <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="display:inline"><path d="M1.5 5.5h8M5.5 1.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card reveal">
+          <div class="bc-img"><div class="bc-img-in t6">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+              <rect x="15" y="9" width="20" height="32" rx="2"
+                    stroke="rgba(0,212,255,.4)" stroke-width="1.5" fill="none"/>
+              <line x1="21" y1="17" x2="29" y2="17" stroke="rgba(0,212,255,.45)" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="21" y1="23" x2="29" y2="23" stroke="rgba(0,212,255,.35)" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="21" y1="29" x2="26" y2="29" stroke="rgba(0,212,255,.25)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div></div>
+          <div class="bc-body">
+            <div class="tags"><span class="tag">Legislação</span><span class="tag">Decreto</span></div>
+            <h3 class="bc-title">Decreto 4.887/2003 Após 20 Anos: Avanços, Retrocessos e Perspectivas</h3>
+            <p class="bc-excerpt">Balanço crítico da principal norma de regularização fundiária quilombola: o que evoluiu, o que regrediu e o que ainda precisa avançar.</p>
+            <div class="bc-footer">
+              <span>Kayo Melo Adv. · 26 Abr 2025</span>
+              <span class="bc-read">Ler <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="display:inline"><path d="M1.5 5.5h8M5.5 1.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ÁREAS =================================================== -->
+  <section class="areas-sec" id="areas">
+    <div class="container">
+      <div class="section-header reveal">
+        <div>
+          <div class="eyebrow">Especialidades</div>
+          <h2 class="section-title">Áreas de <em>Atuação</em></h2>
+        </div>
+      </div>
+      <div class="areas-wrap reveal">
+        <div class="areas-grid">
+          <div class="area-card"><div class="area-num">01</div><div class="area-icon">⚖️</div><h3 class="area-title">Direito Previdenciário</h3><p class="area-desc">Aposentadorias, pensões, BPC/LOAS, revisões de benefícios e recursos no INSS para trabalhadores rurais e comunidades tradicionais.</p></div>
+          <div class="area-card"><div class="area-num">02</div><div class="area-icon">🌍</div><h3 class="area-title">Território Quilombola</h3><p class="area-desc">Regularização fundiária, defesa de territórios tradicionais, litígios com terceiros e processos junto ao INCRA e Ministério Público.</p></div>
+          <div class="area-card"><div class="area-num">03</div><div class="area-icon">🏛️</div><h3 class="area-title">Direito Constitucional</h3><p class="area-desc">Proteção de direitos fundamentais, mandado de segurança, ações contra o Estado e garantias constitucionais das comunidades.</p></div>
+          <div class="area-card"><div class="area-num">04</div><div class="area-icon">📋</div><h3 class="area-title">Direito Administrativo</h3><p class="area-desc">Recursos administrativos, licitações, contratos públicos e defesa dos direitos das comunidades perante órgãos federais e estaduais.</p></div>
+          <div class="area-card"><div class="area-num">05</div><div class="area-icon">🏡</div><h3 class="area-title">Família e Sucessões</h3><p class="area-desc">Inventários, partilha em território coletivo, uniões estáveis e questões familiares com respeito às especificidades culturais.</p></div>
+          <div class="area-card"><div class="area-num">06</div><div class="area-icon">🌿</div><h3 class="area-title">Direito Ambiental</h3><p class="area-desc">Proteção de biomas ligados a territórios quilombolas, patrimônio imaterial e litígios ambientais que afetam comunidades tradicionais.</p></div>
+          <div class="area-card"><div class="area-num">07</div><div class="area-icon">💊</div><h3 class="area-title">Direito à Saúde</h3><p class="area-desc">Ações para garantir tratamentos, medicamentos e atendimento especializado a comunidades com acesso limitado ao sistema de saúde.</p></div>
+          <div class="area-card"><div class="area-num">08</div><div class="area-icon">📚</div><h3 class="area-title">Consultoria Jurídica</h3><p class="area-desc">Assessoria preventiva para lideranças, associações comunitárias e cooperativas. Capacitação sobre direitos e deveres legais.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SOBRE =================================================== -->
+  <section class="about-sec" id="sobre">
+    <div class="container">
+      <div class="about-inner">
+        <div class="about-vis reveal">
+          <div class="about-portrait">
+            <svg width="175" height="175" viewBox="0 0 175 175" fill="none">
+              <rect x="10" y="10" width="155" height="155" rx="1"
+                    stroke="rgba(0,212,255,.1)" stroke-width="2"/>
+              <rect x="22" y="22" width="131" height="131" rx="1"
+                    stroke="rgba(0,212,255,.07)" stroke-width="1.5"/>
+              <!-- K grande -->
+              <path d="M42 48 L42 128 M42 88 L88 48 M42 88 L88 128"
+                    stroke="rgba(0,212,255,.38)" stroke-width="5"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- M grande -->
+              <path d="M96 128 L96 48 L133 88 L133 48"
+                    stroke="rgba(0,212,255,.38)" stroke-width="5"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="about-accent">
+            <span class="about-num">+850</span>
+            <span class="about-label">Casos Resolvidos</span>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="eyebrow">Sobre o Escritório</div>
+          <h2 class="section-title">Kayo Melo <em>Advogados</em></h2>
+          <p class="about-bio">
+            O escritório Kayo Melo Advogados nasceu do compromisso com a Justiça Social e o reconhecimento histórico das comunidades quilombolas. Combinamos rigor técnico, atualização constante e profundo respeito pela cultura e pelos direitos dos povos tradicionais.
+          </p>
+          <div class="about-creds">
+            <div class="cred">Mais de 15 anos de experiência em Direito Previdenciário</div>
+            <div class="cred">Especialização em Direito Previdenciário e Territorial</div>
+            <div class="cred">Professor em cursos de extensão sobre Direito Quilombola</div>
+            <div class="cred">Parceiro da CONAQ — Coordenação Nacional de Quilombos</div>
+            <div class="cred">Mais de 850 casos exitosos em todo o território nacional</div>
+          </div>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+            <button class="btn-primary">Agendar Consulta</button>
+            <button class="btn-outline">Nossa Metodologia</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- NEWSLETTER ============================================== -->
+  <section class="nl-sec" id="contato">
+    <div class="container">
+      <div class="nl-box reveal">
+        <div class="eyebrow" style="justify-content:center;margin-bottom:.9rem;">Fique Atualizado</div>
+        <h2 class="nl-title">Análises Jurídicas <em style="font-style:italic;color:var(--gold)">Exclusivas</em></h2>
+        <p class="nl-desc">Receba artigos, alertas legislativos e orientações do escritório Kayo Melo Advogados no seu e-mail.</p>
+        <div class="nl-form">
+          <input class="nl-input" type="email" placeholder="Seu melhor e-mail…" />
+          <button class="btn-primary" id="subBtn">Inscrever-se</button>
+        </div>
+        <p style="margin-top:1rem;font-size:.7rem;color:var(--tm);">Sem spam. Cancele quando quiser. Sua privacidade é respeitada.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER ================================================== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <a href="#" class="nav-logo" style="display:inline-flex;margin-bottom:.75rem;">
+            <div class="km-mark">
+              <svg viewBox="0 0 42 42" fill="none">
+                <rect x="1" y="1" width="40" height="40" rx="1"
+                      stroke="currentColor" stroke-width="1.8" style="color:var(--t1)"/>
+                <rect x="5" y="5" width="32" height="32" rx=".5"
+                      stroke="currentColor" stroke-width=".8" style="color:var(--t1);opacity:.35"/>
+                <path d="M10 13 L10 29 M10 21 L18 13 M10 21 L18 29"
+                      stroke="currentColor" stroke-width="2.3"
+                      stroke-linecap="round" stroke-linejoin="round" style="color:var(--t1)"/>
+                <path d="M20 29 L20 13 L26 21 L32 13 L32 29"
+                      stroke="currentColor" stroke-width="2.3"
+                      stroke-linecap="round" stroke-linejoin="round" style="color:var(--t1)"/>
+              </svg>
+            </div>
+            <div class="logo-text">
+              <span class="logo-name">Kayo Melo</span>
+              <span class="logo-sub">Advogados</span>
+            </div>
+          </a>
+          <p class="fbrand">Advocacia especializada em Direito Previdenciário e Territorial Quilombola. Comprometidos com Justiça, Dignidade e Memória.</p>
+          <div class="fsocial">
+            <a class="fsoc" href="#" title="Instagram">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a class="fsoc" href="#" title="LinkedIn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a class="fsoc" href="#" title="YouTube">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.97C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 0 0 1.95-1.97A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="fcol-title">Navegação</div>
+          <ul class="flinks">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#artigos">Artigos</a></li>
+            <li><a href="#areas">Áreas de Atuação</a></li>
+            <li><a href="#sobre">Sobre o Escritório</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title">Especialidades</div>
+          <ul class="flinks">
+            <li><a href="#">Direito Previdenciário</a></li>
+            <li><a href="#">Território Quilombola</a></li>
+            <li><a href="#">Direito Constitucional</a></li>
+            <li><a href="#">Saúde &amp; BPC/LOAS</a></li>
+            <li><a href="#">Consultoria Jurídica</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="fcol-title">Contato</div>
+          <ul class="flinks">
+            <li><a href="tel:+5500000000000">(00) 9 0000-0000</a></li>
+            <li><a href="mailto:contato@kayomelo.adv.br">contato@kayomelo.adv.br</a></li>
+            <li><a href="#">Brasil</a></li>
+            <li><a href="#">Seg–Sex · 8h–18h</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="fcopy">© 2025 Kayo Melo Advogados. Todos os direitos reservados.</p>
+        <p class="fcopy">As informações deste site não constituem aconselhamento jurídico.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- BOTÕES FLUTUANTES ======================================= -->
+  <div class="float-wrap">
+    <a class="fbtn ft" href="https://t.me/kayomeloadvogados"
+       target="_blank" rel="noopener" data-label="Telegram">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+      </svg>
+    </a>
+    <a class="fbtn fw" href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20com%20Kayo%20Melo%20Advogados."
+       target="_blank" rel="noopener" data-label="WhatsApp">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+      </svg>
+    </a>
+  </div>
+
+
+  <!-- JAVASCRIPT ============================================== -->
+  <script>
+    // THEME
+    const html  = document.documentElement;
+    const tBtn  = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('km-theme') || 'dark';
+    html.setAttribute('data-theme', saved);
+    tBtn.addEventListener('click', () => {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('km-theme', next);
+    });
+
+    // NAVBAR SCROLL
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', scrollY > 40);
+    }, { passive: true });
+
+    // MOBILE NAV
+    function toggleNav() {
+      document.getElementById('mobileNav').classList.toggle('open');
+    }
+
+    // SCROLL REVEAL
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const i = Array.from(e.target.parentElement.children).indexOf(e.target);
+        setTimeout(() => e.target.classList.add('visible'), Math.min(i * 90, 400));
+        obs.unobserve(e.target);
+      });
+    }, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // NEWSLETTER
+    document.getElementById('subBtn').addEventListener('click', function () {
+      const inp = document.querySelector('.nl-input');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inp.value.trim())) {
+        inp.style.borderColor = '#e05a5a';
+        inp.focus();
+        setTimeout(() => inp.style.borderColor = '', 2000);
+        return;
+      }
+      this.textContent = '✓ Inscrito!';
+      this.style.background = '#3a8a5a';
+      inp.value = ''; inp.disabled = true; this.disabled = true;
+      setTimeout(() => {
+        this.textContent = 'Inscrever-se'; this.style.background = '';
+        inp.disabled = false; this.disabled = false;
+      }, 4000);
+    });
+
+    // SMOOTH ANCHORS
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (id === '#') return;
+        const t = document.querySelector(id);
+        if (t) { e.preventDefault(); window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - 72, behavior: 'smooth' }); }
+      });
+    });
+
+    // 3-D CARD HOVER
+    document.querySelectorAll('.blog-card').forEach(c => {
+      c.addEventListener('mousemove', e => {
+        const r = c.getBoundingClientRect();
+        const x = ((e.clientX - r.left) / r.width  - .5) * 7;
+        const y = ((e.clientY - r.top)  / r.height - .5) * 7;
+        c.style.transform = `translateY(-6px) rotateX(${-y}deg) rotateY(${x}deg)`;
+      });
+      c.addEventListener('mouseleave', () => c.style.transform = '');
+    });
+  </script>
+
+</body>
+</html>
