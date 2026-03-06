@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kayo Melo Saúde — Direito à Saúde & Planos de Saúde</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       VARIÁVEIS — Verde Esmeralda Neon + Azul Médico Profundo
+       Dark  → fundo azul-petróleo escuro + neon verde #00ffb3
+       Light → branco clínico + verde escuro #006644
+    ============================================================ */
+    :root { --tr: background-color .5s ease, color .5s ease, border-color .5s ease; }
+
+    [data-theme="dark"] {
+      --bg0:  #020d0a;          /* verde-noite profundo */
+      --bg1:  #030f0c;
+      --bgC:  #061410;
+      --bgCh: #0a1c16;
+      --bgN:  rgba(2,13,10,.94);
+      --t1:   #e2fff8;          /* branco esverdeado */
+      --t2:   #6ab89e;
+      --tm:   #234d3a;
+      --neo:  #00ffb3;          /* verde neon principal */
+      --neoD: #007a50;
+      --neoB: #80ffd6;
+      --bS:   rgba(0,255,179,.07);
+      --bC:   rgba(0,255,179,.13);
+      --bG:   rgba(0,255,179,.22);
+      --shC:  0 2px 28px rgba(0,0,0,.75), 0 1px 0 rgba(0,255,179,.05);
+      --shH:  0 14px 50px rgba(0,0,0,.9), 0 0 0 1px rgba(0,255,179,.32), 0 0 24px rgba(0,255,179,.08);
+      --heroG:radial-gradient(ellipse 70% 55% at 50% 45%, rgba(0,100,60,.25) 0%, transparent 65%),
+              radial-gradient(ellipse 40% 40% at 80% 20%, rgba(0,255,179,.05) 0%, transparent 50%),
+              linear-gradient(180deg,#020d0a 0%,#030f0c 100%);
+      --nOp:  .04;
+      --tagB: rgba(0,255,179,.1);
+      --tagC: #00ffb3;
+      --fbG:  #061410;
+      --fbB:  rgba(0,255,179,.28);
+      --nglow:0 0 14px rgba(0,255,179,.5), 0 0 36px rgba(0,255,179,.2);
+    }
+
+    [data-theme="light"] {
+      --bg0:  #f0faf6;
+      --bg1:  #e0f4ed;
+      --bgC:  #f8fefc;
+      --bgCh: #ffffff;
+      --bgN:  rgba(240,250,246,.96);
+      --t1:   #041a10;
+      --t2:   #2a6048;
+      --tm:   #80b09a;
+      --neo:  #006644;
+      --neoD: #004428;
+      --neoB: #008855;
+      --bS:   rgba(0,100,68,.08);
+      --bC:   rgba(0,100,68,.14);
+      --bG:   rgba(0,102,68,.2);
+      --shC:  0 2px 20px rgba(0,60,40,.1);
+      --shH:  0 12px 40px rgba(0,60,40,.18), 0 0 0 1px rgba(0,102,68,.25);
+      --heroG:radial-gradient(ellipse 70% 55% at 50% 45%, rgba(0,120,80,.09) 0%, transparent 65%),
+              linear-gradient(180deg,#f0faf6 0%,#e0f4ed 100%);
+      --nOp:  .02;
+      --tagB: rgba(0,100,68,.09);
+      --tagC: #006644;
+      --fbG:  #f8fefc;
+      --fbB:  rgba(0,102,68,.28);
+      --nglow:none;
+    }
+
+    /* ============================================================ RESET */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg0);color:var(--t1);
+         transition:var(--tr);overflow-x:hidden;min-height:100vh}
+    body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity:var(--nOp);mix-blend-mode:overlay}
+    a{color:inherit;text-decoration:none}
+    ul{list-style:none}
+    ::-webkit-scrollbar{width:5px}
+    ::-webkit-scrollbar-track{background:var(--bg0)}
+    ::-webkit-scrollbar-thumb{background:var(--neoD);border-radius:3px}
+    [data-theme="dark"] ::-webkit-scrollbar-thumb{box-shadow:0 0 6px rgba(0,255,179,.4)}
+
+    /* ============================================================ NAVBAR */
+    .navbar{position:fixed;top:0;left:0;right:0;z-index:1000;
+      backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);
+      background:var(--bgN);border-bottom:1px solid var(--bS);
+      transition:var(--tr),box-shadow .3s}
+    .navbar.scrolled{box-shadow:0 4px 40px rgba(0,0,0,.6),0 1px 0 rgba(0,255,179,.1)}
+    .nav-inner{max-width:1280px;margin:0 auto;padding:0 2rem;height:72px;
+      display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:2rem}
+
+    /* Logo */
+    .nav-logo{display:flex;align-items:center;gap:.85rem}
+    .km-mark{width:42px;height:42px;flex-shrink:0}
+    .km-mark svg{width:100%;height:100%}
+    [data-theme="dark"] .km-mark svg path{filter:drop-shadow(0 0 3px rgba(0,255,179,.45))}
+
+    .logo-text{display:flex;flex-direction:column;line-height:1.1}
+    .logo-name{font-family:'DM Sans',sans-serif;font-size:.98rem;font-weight:700;
+      letter-spacing:.12em;text-transform:uppercase;color:var(--t1);transition:color .5s}
+    .logo-sub{font-size:.58rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+      color:var(--neo);transition:color .5s}
+
+    /* Nav links */
+    .nav-links{display:flex;align-items:center;justify-content:center;gap:.15rem}
+    .nav-links a{font-size:.77rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--t2);padding:.45rem .9rem;border-radius:5px;transition:color .3s;position:relative}
+    .nav-links a::after{content:'';position:absolute;bottom:5px;left:50%;
+      transform:translateX(-50%) scaleX(0);width:50%;height:1px;
+      background:var(--neo);transition:transform .3s}
+    .nav-links a:hover{color:var(--t1)}
+    .nav-links a:hover::after{transform:translateX(-50%) scaleX(1)}
+
+    /* Actions */
+    .nav-actions{display:flex;align-items:center;gap:1rem}
+    .btn-cta-nav{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+      color:#020d0a;background:var(--neo);border:none;padding:.54rem 1.15rem;
+      border-radius:4px;cursor:pointer;transition:opacity .25s,transform .2s,box-shadow .2s}
+    [data-theme="light"] .btn-cta-nav{color:#fff;background:var(--neo)}
+    .btn-cta-nav:hover{opacity:.85;transform:translateY(-1px);box-shadow:var(--nglow)}
+
+    .theme-toggle{width:44px;height:24px;background:var(--bC);border:1px solid var(--bC);
+      border-radius:999px;cursor:pointer;position:relative;transition:background .4s;flex-shrink:0}
+    .theme-toggle::after{content:'';position:absolute;top:2px;left:2px;
+      width:18px;height:18px;background:var(--neo);border-radius:50%;
+      transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+    [data-theme="light"] .theme-toggle::after{transform:translateX(20px)}
+
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--t1);border-radius:2px;transition:all .3s}
+
+    .mobile-nav{display:none;position:fixed;inset:0;top:72px;background:var(--bg0);
+      z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
+    .mobile-nav.open{display:flex}
+    .mobile-nav a{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;
+      color:var(--t1);transition:color .3s}
+    .mobile-nav a:hover{color:var(--neo)}
+
+    /* ============================================================ HERO */
+    .hero{min-height:100vh;padding-top:72px;display:flex;align-items:center;
+      background:var(--heroG);position:relative;overflow:hidden}
+
+    /* Grade hexagonal — remete a células/moléculas */
+    .hero-hex{position:absolute;inset:0;pointer-events:none;opacity:.06;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='52'%3E%3Cpolygon points='30,2 58,17 58,35 30,50 2,35 2,17' stroke='%2300ffb3' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+      background-size:60px 52px}
+    [data-theme="light"] .hero-hex{opacity:.04}
+
+    /* Partículas animadas (cross/plus médico) */
+    .hero-crosses{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+    .cross{position:absolute;color:var(--neo);opacity:0;font-size:1rem;
+      animation:floatCross 12s ease-in-out infinite}
+    .cross:nth-child(1){left:8%;top:20%;animation-delay:0s;font-size:.8rem}
+    .cross:nth-child(2){left:88%;top:35%;animation-delay:2s}
+    .cross:nth-child(3){left:15%;top:70%;animation-delay:4s;font-size:.7rem}
+    .cross:nth-child(4){left:75%;top:15%;animation-delay:6s;font-size:1.1rem}
+    .cross:nth-child(5){left:50%;top:80%;animation-delay:8s;font-size:.75rem}
+    .cross:nth-child(6){left:35%;top:10%;animation-delay:10s}
+    @keyframes floatCross{
+      0%{opacity:0;transform:translateY(20px) scale(.8)}
+      20%{opacity:.35}
+      80%{opacity:.2}
+      100%{opacity:0;transform:translateY(-40px) scale(1.1)}
+    }
+
+    /* Orb neon */
+    .hero-orb{position:absolute;width:560px;height:560px;border-radius:50%;
+      background:radial-gradient(circle,rgba(0,180,100,.15) 0%,rgba(0,255,179,.04) 40%,transparent 70%);
+      top:50%;left:45%;transform:translate(-50%,-50%);
+      pointer-events:none;animation:orbP 8s ease-in-out infinite}
+    [data-theme="light"] .hero-orb{background:radial-gradient(circle,rgba(0,120,70,.07) 0%,transparent 70%)}
+    @keyframes orbP{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:1}
+                    50%{transform:translate(-50%,-50%) scale(1.18);opacity:.45}}
+
+    .hero-inner{max-width:1280px;margin:0 auto;padding:6rem 2rem 4rem;
+      width:100%;display:grid;grid-template-columns:1fr 360px;gap:4rem;align-items:center}
+
+    .hero-badge{display:inline-flex;align-items:center;gap:.6rem;
+      font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+      color:var(--neo);border:1px solid var(--bG);border-radius:3px;
+      padding:.4rem 1rem;margin-bottom:2rem;animation:fadeUp .8s ease both}
+    .hero-dot{width:5px;height:5px;background:var(--neo);border-radius:50%;
+      animation:blink 2s ease-in-out infinite;box-shadow:var(--nglow)}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+    .hero-title{font-family:'Playfair Display',serif;
+      font-size:clamp(2.8rem,5.5vw,5.5rem);font-weight:900;line-height:1.02;
+      letter-spacing:-.025em;color:var(--t1);margin-bottom:1.5rem;
+      animation:fadeUp .8s .12s ease both}
+    .hero-title em{font-style:italic;display:block;
+      background:linear-gradient(105deg,var(--t1) 20%,var(--neo) 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      filter:drop-shadow(0 0 18px rgba(0,255,179,.3))}
+    [data-theme="light"] .hero-title em{
+      background:linear-gradient(105deg,#041a10 0%,var(--neo) 100%);
+      -webkit-background-clip:text;background-clip:text;filter:none}
+
+    .hero-desc{font-family:'Crimson Pro',serif;font-size:1.2rem;line-height:1.8;
+      color:var(--t2);max-width:510px;margin-bottom:2.5rem;
+      animation:fadeUp .8s .24s ease both}
+
+    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .8s .36s ease both}
+
+    /* Alerta urgente — Monjaro */
+    .hero-alert{display:inline-flex;align-items:flex-start;gap:.85rem;
+      background:rgba(0,255,179,.07);border:1px solid var(--bG);
+      border-left:3px solid var(--neo);
+      border-radius:6px;padding:1rem 1.2rem;margin-bottom:2.5rem;
+      animation:fadeUp .8s .3s ease both;max-width:520px}
+    [data-theme="light"] .hero-alert{background:rgba(0,102,68,.06)}
+    .alert-icon{font-size:1.1rem;flex-shrink:0;margin-top:.05rem}
+    .alert-text{font-size:.83rem;line-height:1.6;color:var(--t2)}
+    .alert-text strong{color:var(--neo);font-weight:700;display:block;
+      margin-bottom:.25rem;font-size:.85rem;letter-spacing:.02em}
+
+    /* Buttons */
+    .btn-primary{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+      color:#020d0a;background:var(--neo);border:none;padding:.9rem 2rem;
+      border-radius:4px;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;
+      transition:transform .25s,box-shadow .25s,opacity .25s}
+    [data-theme="light"] .btn-primary{color:#fff;background:var(--neo)}
+    .btn-primary:hover{opacity:.88;transform:translateY(-2px);box-shadow:var(--nglow)}
+
+    .btn-outline{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--neo);background:transparent;border:1px solid var(--bG);
+      padding:.9rem 2rem;border-radius:4px;cursor:pointer;
+      display:inline-flex;align-items:center;gap:.5rem;transition:all .25s}
+    .btn-outline:hover{background:var(--tagB);transform:translateY(-2px)}
+
+    /* Hero card */
+    .hero-card{background:var(--bgC);border:1px solid var(--bC);border-radius:10px;
+      overflow:hidden;box-shadow:var(--shC);animation:fadeRight .9s .2s ease both;
+      transition:var(--tr)}
+    .hc-img{width:100%;height:200px;
+      background:linear-gradient(145deg,#020d0a 0%,#041a10 100%);
+      display:flex;align-items:center;justify-content:center}
+    [data-theme="light"] .hc-img{background:linear-gradient(145deg,#c8eedd 0%,#a8dcc4 100%)}
+    .hc-body{padding:1.4rem}
+    .hc-tag{font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+      color:var(--neo);background:var(--tagB);padding:.28rem .65rem;
+      border-radius:3px;display:inline-block;margin-bottom:.7rem}
+    .hc-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;
+      line-height:1.38;color:var(--t1);margin-bottom:.7rem}
+    .hc-excerpt{font-size:.83rem;line-height:1.65;color:var(--t2);margin-bottom:1.2rem}
+    .hc-meta{display:flex;align-items:center;justify-content:space-between;
+      font-size:.72rem;color:var(--tm)}
+    .hc-author{display:flex;align-items:center;gap:.5rem}
+    .av{width:26px;height:26px;border-radius:50%;background:var(--neo);color:#020d0a;
+      display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:800}
+    [data-theme="light"] .av{color:#fff;background:var(--neo)}
+
+    /* ============================================================ SEÇÕES */
+    section{padding:6rem 0}
+    .container{max-width:1280px;margin:0 auto;padding:0 2rem}
+    .section-header{margin-bottom:3.5rem;display:flex;align-items:flex-end;
+      justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+      color:var(--neo);margin-bottom:.7rem;display:flex;align-items:center;gap:.75rem}
+    .eyebrow::before{content:'';width:22px;height:1px;background:var(--neo)}
+    .section-title{font-family:'Playfair Display',serif;
+      font-size:clamp(1.8rem,3.2vw,2.7rem);font-weight:800;line-height:1.12;color:var(--t1)}
+    .section-title em{font-style:italic;color:var(--neo)}
+    .section-link{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--neo);display:inline-flex;align-items:center;gap:.5rem;
+      border-bottom:1px solid var(--bG);padding-bottom:2px;white-space:nowrap;transition:gap .3s}
+    .section-link:hover{gap:.75rem;border-color:var(--neo)}
+
+    /* ============================================================ MONJARO DESTAQUE */
+    .monjaro-sec{background:var(--bg1);transition:var(--tr);position:relative;overflow:hidden}
+    .monjaro-sec::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+      background:linear-gradient(90deg,transparent 0%,var(--neo) 50%,transparent 100%);
+      box-shadow:0 0 12px var(--neo)}
+
+    .monjaro-hero{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+
+    .monjaro-badge{display:inline-flex;align-items:center;gap:.5rem;
+      font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+      color:#020d0a;background:var(--neo);padding:.3rem .85rem;border-radius:3px;
+      margin-bottom:1.2rem;box-shadow:var(--nglow)}
+    [data-theme="light"] .monjaro-badge{color:#fff}
+
+    .monjaro-title{font-family:'Playfair Display',serif;
+      font-size:clamp(1.8rem,3vw,2.8rem);font-weight:900;line-height:1.1;
+      color:var(--t1);margin-bottom:1rem}
+    .monjaro-title em{font-style:italic;color:var(--neo)}
+
+    .monjaro-desc{font-family:'Crimson Pro',serif;font-size:1.1rem;line-height:1.82;
+      color:var(--t2);margin-bottom:2rem}
+
+    .monjaro-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem}
+    .stat-box{background:var(--bgC);border:1px solid var(--bC);border-radius:8px;
+      padding:1.2rem;text-align:center;transition:box-shadow .3s}
+    .stat-box:hover{box-shadow:var(--shH)}
+    .stat-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;
+      line-height:1;color:var(--neo);display:block;margin-bottom:.3rem;
+      filter:drop-shadow(0 0 8px rgba(0,255,179,.3))}
+    [data-theme="light"] .stat-num{filter:none}
+    .stat-label{font-size:.72rem;font-weight:600;letter-spacing:.08em;
+      text-transform:uppercase;color:var(--t2)}
+
+    /* Visual lado direito */
+    .monjaro-visual{position:relative}
+    .monjaro-card-main{background:var(--bgC);border:1px solid var(--bC);
+      border-radius:12px;overflow:hidden;box-shadow:var(--shC)}
+    .monjaro-card-img{width:100%;height:220px;
+      background:linear-gradient(145deg,#020d0a 0%,#061a10 100%);
+      display:flex;align-items:center;justify-content:center;position:relative}
+    [data-theme="light"] .monjaro-card-img{background:linear-gradient(145deg,#c0e8d4 0%,#a0d4bc 100%)}
+    .monjaro-card-body{padding:1.4rem}
+
+    /* Pill flutuante */
+    .monjaro-pill{position:absolute;top:-1rem;right:1rem;
+      background:var(--neo);color:#020d0a;
+      font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+      padding:.35rem .9rem;border-radius:999px;
+      box-shadow:var(--nglow)}
+    [data-theme="light"] .monjaro-pill{color:#fff}
+
+    /* ============================================================ FEATURED */
+    .feat-sec{background:var(--bg0);transition:var(--tr)}
+    .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;
+      border-radius:10px;overflow:hidden;border:1px solid var(--bC)}
+    .feat-main{background:var(--bgC);overflow:hidden;cursor:pointer}
+    .feat-img{width:100%;height:360px;
+      background:linear-gradient(160deg,#020d0a 0%,#061510 100%);
+      display:flex;align-items:center;justify-content:center;
+      transition:transform .5s;overflow:hidden}
+    [data-theme="light"] .feat-img{background:linear-gradient(160deg,#b8e4cc 0%,#98d0b4 100%)}
+    .feat-main:hover .feat-img{transform:scale(1.03)}
+    .feat-body{padding:1.8rem}
+    .feat-right{display:flex;flex-direction:column}
+    .feat-sub{flex:1;background:var(--bgC);padding:1.5rem;cursor:pointer;
+      border-bottom:1px solid var(--bS);transition:background .3s}
+    .feat-sub:last-child{border-bottom:none}
+    .feat-sub:hover{background:var(--bgCh)}
+    .feat-sub-img{width:100%;height:105px;border-radius:7px;overflow:hidden;margin-bottom:.9rem}
+    .feat-sub-img-in{width:100%;height:100%;display:flex;align-items:center;
+      justify-content:center;transition:transform .4s}
+    .feat-sub:hover .feat-sub-img-in{transform:scale(1.05)}
+
+    /* ============================================================ BLOG GRID */
+    .blog-sec{background:var(--bg1);transition:var(--tr)}
+    .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+    .blog-card{background:var(--bgC);border:1px solid var(--bC);border-radius:9px;
+      overflow:hidden;box-shadow:var(--shC);cursor:pointer;
+      display:flex;flex-direction:column;
+      transition:transform .35s cubic-bezier(.23,1,.32,1),box-shadow .35s,background .5s}
+    .blog-card:hover{transform:translateY(-6px);box-shadow:var(--shH)}
+    .bc-img{width:100%;height:168px;overflow:hidden}
+    .bc-img-in{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+      transition:transform .5s}
+    .blog-card:hover .bc-img-in{transform:scale(1.06)}
+
+    /* Card image themes — verde escuro com toque neon */
+    .t1{background:linear-gradient(145deg,#020d0a 0%,#051a10 100%)}
+    .t2{background:linear-gradient(145deg,#030f0b 0%,#07180e 100%)}
+    .t3{background:linear-gradient(145deg,#020b08 0%,#040f09 100%)}
+    .t4{background:linear-gradient(145deg,#03100c 0%,#061808 100%)}
+    .t5{background:linear-gradient(145deg,#041208 0%,#081c0e 100%)}
+    .t6{background:linear-gradient(145deg,#030e0a 0%,#051610 100%)}
+    [data-theme="light"] .t1{background:linear-gradient(145deg,#c8e8d4 0%,#b0d8c0 100%)}
+    [data-theme="light"] .t2{background:linear-gradient(145deg,#bce0cc 0%,#a4d0b8 100%)}
+    [data-theme="light"] .t3{background:linear-gradient(145deg,#cceedd 0%,#b4deca 100%)}
+    [data-theme="light"] .t4{background:linear-gradient(145deg,#c0e4cc 0%,#a8d4b8 100%)}
+    [data-theme="light"] .t5{background:linear-gradient(145deg,#c4e8d0 0%,#acd8bc 100%)}
+    [data-theme="light"] .t6{background:linear-gradient(145deg,#bae4ce 0%,#a2d4ba 100%)}
+
+    .bc-body{padding:1.3rem;flex:1;display:flex;flex-direction:column}
+    .tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.8rem}
+    .tag{font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+      color:var(--tagC);background:var(--tagB);padding:.22rem .55rem;border-radius:3px;transition:background .3s}
+    .blog-card:hover .tag{background:rgba(0,255,179,.16)}
+    [data-theme="light"] .blog-card:hover .tag{background:rgba(0,102,68,.14)}
+    .bc-title{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:700;
+      line-height:1.4;color:var(--t1);margin-bottom:.7rem;flex:1;transition:color .3s}
+    .blog-card:hover .bc-title{color:var(--neo)}
+    .bc-excerpt{font-size:.82rem;line-height:1.65;color:var(--t2);margin-bottom:1.1rem;
+      display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .bc-footer{display:flex;align-items:center;justify-content:space-between;
+      padding-top:.9rem;border-top:1px solid var(--bS);font-size:.72rem;color:var(--tm)}
+    .bc-read{font-size:.72rem;font-weight:700;color:var(--neo);
+      display:flex;align-items:center;gap:.3rem;transition:gap .3s}
+    .blog-card:hover .bc-read{gap:.5rem}
+
+    /* ============================================================ PASSOS / COMO AGIR */
+    .steps-sec{background:var(--bg0);transition:var(--tr)}
+    .steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+    .step-card{background:var(--bgC);border:1px solid var(--bC);
+      border-radius:10px;padding:2rem 1.5rem;position:relative;
+      transition:box-shadow .3s,background .3s}
+    .step-card:hover{box-shadow:var(--shH);background:var(--bgCh)}
+    .step-num{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;
+      line-height:1;color:var(--bC);position:absolute;top:1rem;right:1.2rem;
+      transition:color .3s;pointer-events:none}
+    .step-card:hover .step-num{color:rgba(0,255,179,.15)}
+    .step-icon{font-size:1.6rem;margin-bottom:1rem}
+    .step-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;
+      color:var(--t1);margin-bottom:.6rem}
+    .step-desc{font-size:.82rem;line-height:1.65;color:var(--t2)}
+    /* Connector line */
+    .steps-grid .step-card::after{content:'→';position:absolute;
+      right:-1rem;top:50%;transform:translateY(-50%);
+      color:var(--neo);font-size:.9rem;opacity:.5;z-index:1}
+    .steps-grid .step-card:last-child::after{display:none}
+
+    /* ============================================================ CTA URGENTE */
+    .cta-sec{background:var(--bg1);transition:var(--tr);position:relative;overflow:hidden}
+    .cta-box{background:var(--bgC);border:1px solid var(--bC);border-radius:12px;
+      padding:3.5rem;display:grid;grid-template-columns:1fr auto;
+      gap:3rem;align-items:center;position:relative;overflow:hidden;
+      box-shadow:var(--shC)}
+    .cta-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+      background:linear-gradient(90deg,transparent,var(--neo),transparent);
+      box-shadow:0 0 10px var(--neo)}
+    .cta-eyebrow{font-size:.65rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;
+      color:var(--neo);margin-bottom:.75rem;display:flex;align-items:center;gap:.6rem}
+    .cta-eyebrow::before{content:'';width:18px;height:1px;background:var(--neo)}
+    .cta-title{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.5vw,2.2rem);
+      font-weight:900;color:var(--t1);margin-bottom:.85rem;line-height:1.15}
+    .cta-desc{font-family:'Crimson Pro',serif;font-size:1.05rem;line-height:1.75;color:var(--t2)}
+    .cta-actions{display:flex;flex-direction:column;gap:.75rem;flex-shrink:0;min-width:200px}
+
+    /* ============================================================ SOBRE */
+    .about-sec{background:var(--bg0);transition:var(--tr)}
+    .about-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .about-vis{position:relative}
+    .about-portrait{width:100%;aspect-ratio:4/5;max-width:380px;border-radius:10px;
+      background:linear-gradient(160deg,#020d0a 0%,#06180e 100%);
+      display:flex;align-items:center;justify-content:center;
+      border:1px solid var(--bC);box-shadow:var(--shC);overflow:hidden}
+    [data-theme="light"] .about-portrait{background:linear-gradient(160deg,#b8e4cc 0%,#98d0b4 100%)}
+    .about-accent{position:absolute;bottom:-1.5rem;right:-1.5rem;
+      background:var(--neo);color:#020d0a;border-radius:8px;
+      padding:1.2rem 1.5rem;box-shadow:0 8px 32px rgba(0,0,0,.5),var(--nglow)}
+    [data-theme="light"] .about-accent{background:var(--neo);color:#fff;box-shadow:0 8px 32px rgba(0,80,50,.3)}
+    .about-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;
+      line-height:1;display:block;color:#020d0a}
+    [data-theme="light"] .about-num{color:#fff}
+    .about-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;
+      text-transform:uppercase;opacity:.85;color:#020d0a}
+    [data-theme="light"] .about-label{color:#fff}
+    .about-bio{font-family:'Crimson Pro',serif;font-size:1.1rem;line-height:1.82;
+      color:var(--t2);margin-top:1.5rem;margin-bottom:2rem}
+    .about-creds{display:flex;flex-direction:column;gap:.7rem;margin-bottom:2.5rem}
+    .cred{display:flex;align-items:flex-start;gap:.75rem;font-size:.84rem;color:var(--t2)}
+    .cred::before{content:'';width:4px;height:4px;background:var(--neo);
+      border-radius:50%;flex-shrink:0;margin-top:.5rem}
+
+    /* ============================================================ NEWSLETTER */
+    .nl-sec{background:var(--bg1);transition:var(--tr)}
+    .nl-box{background:var(--bgC);border:1px solid var(--bC);border-radius:12px;
+      padding:3.5rem;text-align:center;position:relative;overflow:hidden;box-shadow:var(--shC)}
+    .nl-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+      background:linear-gradient(90deg,transparent,var(--neo),transparent);
+      box-shadow:0 0 10px var(--neo)}
+    .nl-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);
+      font-weight:800;color:var(--t1);margin-bottom:.7rem}
+    .nl-desc{font-size:1rem;color:var(--t2);margin-bottom:2rem}
+    .nl-form{display:flex;gap:.75rem;max-width:460px;margin:0 auto}
+    .nl-input{flex:1;font-family:'DM Sans',sans-serif;font-size:.875rem;color:var(--t1);
+      background:var(--bg1);border:1px solid var(--bC);border-radius:4px;
+      padding:.85rem 1.1rem;outline:none;transition:border-color .3s}
+    .nl-input:focus{border-color:var(--neo)}
+    .nl-input::placeholder{color:var(--tm)}
+
+    /* ============================================================ FOOTER */
+    footer{background:var(--bg1);border-top:1px solid var(--bS);
+      padding:4.5rem 0 2rem;transition:var(--tr)}
+    .footer-inner{max-width:1280px;margin:0 auto;padding:0 2rem}
+    .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+    .fbrand{font-family:'Crimson Pro',serif;font-size:1rem;line-height:1.75;
+      color:var(--t2);margin:1rem 0 1.5rem}
+    .fsocial{display:flex;gap:.65rem}
+    .fsoc{width:36px;height:36px;border-radius:6px;background:var(--tagB);
+      border:1px solid var(--bC);display:flex;align-items:center;justify-content:center;
+      color:var(--neo);transition:all .3s;cursor:pointer}
+    .fsoc:hover{background:var(--neo);color:#020d0a;border-color:var(--neo);box-shadow:var(--nglow)}
+    [data-theme="light"] .fsoc:hover{color:#fff}
+    .fcol-title{font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:700;
+      letter-spacing:.16em;text-transform:uppercase;color:var(--t1);margin-bottom:1.2rem}
+    .flinks{display:flex;flex-direction:column;gap:.6rem}
+    .flinks a{font-size:.84rem;color:var(--t2);transition:color .3s}
+    .flinks a:hover{color:var(--neo)}
+    .footer-bottom{display:flex;align-items:center;justify-content:space-between;
+      padding-top:2rem;border-top:1px solid var(--bS);gap:1rem;flex-wrap:wrap}
+    .fcopy{font-size:.75rem;color:var(--tm)}
+
+    /* Link de volta ao site jurídico */
+    .back-link{display:inline-flex;align-items:center;gap:.5rem;
+      font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--neo);border:1px solid var(--bG);border-radius:4px;
+      padding:.45rem .9rem;transition:all .3s}
+    .back-link:hover{background:var(--tagB);box-shadow:var(--nglow)}
+
+    /* ============================================================ FLOATING */
+    .float-wrap{position:fixed;bottom:2rem;right:2rem;
+      display:flex;flex-direction:column;gap:.75rem;z-index:900}
+    .fbtn{width:52px;height:52px;border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+      background:var(--fbG);border:1px solid var(--fbB);
+      box-shadow:0 4px 20px rgba(0,0,0,.45);
+      transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s;
+      position:relative;cursor:pointer;text-decoration:none}
+    .fbtn::before{content:attr(data-label);position:absolute;
+      right:calc(100% + .75rem);top:50%;transform:translateY(-50%);
+      font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:700;
+      letter-spacing:.08em;white-space:nowrap;
+      background:var(--fbG);color:var(--t1);border:1px solid var(--fbB);
+      padding:.3rem .65rem;border-radius:4px;opacity:0;pointer-events:none;transition:opacity .2s}
+    .fbtn:hover::before{opacity:1}
+    .fbtn:hover{transform:scale(1.12);box-shadow:0 8px 32px rgba(0,0,0,.5)}
+    .fw{color:#25D366}.ft{color:#0088cc}
+
+    /* ============================================================ ANIMAÇÕES */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeRight{from{opacity:0;transform:translateX(22px)}to{opacity:1;transform:translateX(0)}}
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    /* ============================================================ RESPONSIVE */
+    @media(max-width:1024px){
+      .hero-inner{grid-template-columns:1fr}.hero-card{display:none}
+      .blog-grid{grid-template-columns:repeat(2,1fr)}
+      .steps-grid{grid-template-columns:repeat(2,1fr)}
+      .monjaro-hero{grid-template-columns:1fr}
+      .cta-box{grid-template-columns:1fr}
+      .footer-top{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:768px){
+      .nav-links,.btn-cta-nav{display:none}
+      .hamburger{display:flex}
+      .nav-inner{grid-template-columns:auto 1fr auto auto;gap:1rem}
+      .hero-inner{padding:4rem 1.5rem 3rem}.hero-title{font-size:2.5rem}
+      .feat-grid{grid-template-columns:1fr}
+      .blog-grid{grid-template-columns:1fr}
+      .steps-grid{grid-template-columns:1fr 1fr}
+      .about-inner{grid-template-columns:1fr}.about-vis{display:none}
+      .nl-form{flex-direction:column}
+      .footer-top{grid-template-columns:1fr;gap:2rem}
+      .footer-bottom{flex-direction:column;text-align:center}
+      .monjaro-stats{grid-template-columns:1fr 1fr}
+      section{padding:4rem 0}
+    }
+    @media(max-width:480px){
+      .steps-grid{grid-template-columns:1fr}
+      .hero-actions{flex-direction:column;align-items:flex-start}
+      .monjaro-stats{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR ================================================== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+
+      <a href="#" class="nav-logo">
+        <div class="km-mark">
+          <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="40" height="40" rx="1"
+                  stroke="currentColor" stroke-width="1.8" style="color:var(--t1)"/>
+            <rect x="5" y="5" width="32" height="32" rx=".5"
+                  stroke="currentColor" stroke-width=".8" style="color:var(--t1);opacity:.35"/>
+            <path d="M10 13 L10 29 M10 21 L18 13 M10 21 L18 29"
+                  stroke="currentColor" stroke-width="2.3"
+                  stroke-linecap="round" stroke-linejoin="round" style="color:var(--t1)"/>
+            <path d="M20 29 L20 13 L26 21 L32 13 L32 29"
+                  stroke="currentColor" stroke-width="2.3"
+                  stroke-linecap="round" stroke-linejoin="round" style="color:var(--t1)"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-name">Kayo Melo</span>
+          <span class="logo-sub">Direito à Saúde</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#monjaro">Monjaro</a></li>
+        <li><a href="#artigos">Artigos</a></li>
+        <li><a href="#como-agir">Como Agir</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a class="back-link" href="kayo-melo-advogados.html">← Portal Jurídico</a>
+        <button class="btn-cta-nav"
+          onclick="document.querySelector('#contato').scrollIntoView({behavior:'smooth'})">
+          Consulta Grátis
+        </button>
+        <button class="theme-toggle" id="themeToggle" aria-label="Dark/Light"></button>
+        <div class="hamburger" id="hamburger" onclick="toggleNav()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#inicio"   onclick="toggleNav()">Início</a>
+    <a href="#monjaro"  onclick="toggleNav()">Monjaro</a>
+    <a href="#artigos"  onclick="toggleNav()">Artigos</a>
+    <a href="#como-agir"onclick="toggleNav()">Como Agir</a>
+    <a href="#sobre"    onclick="toggleNav()">Sobre</a>
+    <a href="#contato"  onclick="toggleNav()">Contato</a>
+  </div>
+
+
+  <!-- HERO ==================================================== -->
+  <section class="hero" id="inicio">
+    <div class="hero-hex"></div>
+    <div class="hero-orb"></div>
+    <div class="hero-crosses">
+      <span class="cross">✚</span>
+      <span class="cross">✚</span>
+      <span class="cross">✚</span>
+      <span class="cross">✚</span>
+      <span class="cross">✚</span>
+      <span class="cross">✚</span>
+    </div>
+
+    <div class="hero-inner container">
+      <div>
+        <div class="hero-badge">
+          <span class="hero-dot"></span>
+          Portal de Saúde Jurídica
+        </div>
+
+        <h1 class="hero-title">
+          Seu Plano Negou.
+          <em>Nós Revertemos.</em>
+        </h1>
+
+        <!-- Alerta Monjaro -->
+        <div class="hero-alert">
+          <span class="alert-icon">⚕️</span>
+          <div class="alert-text">
+            <strong>🔴 Alerta: Negativas de Monjaro em alta</strong>
+            Planos de saúde têm negado cobertura do Monjaro (tirzepatida) mesmo com prescrição médica. Você tem direito à cobertura — saiba como agir judicialmente em até 24h.
+          </div>
+        </div>
+
+        <p class="hero-desc">
+          Kayo Melo Advogados atua na defesa do seu Direito à Saúde. Especialistas em ações contra planos que negam medicamentos, cirurgias e tratamentos cobertos por lei.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn-primary"
+            onclick="document.querySelector('#monjaro').scrollIntoView({behavior:'smooth'})">
+            Fui Negado — O que Fazer?
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <path d="M2.5 6.5h8M6.5 2.5l4 4-4 4" stroke="currentColor"
+                    stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="btn-outline"
+            onclick="document.querySelector('#artigos').scrollIntoView({behavior:'smooth'})">
+            Ver Artigos
+          </button>
+        </div>
+      </div>
+
+      <!-- Hero card -->
+      <div class="hero-card">
+        <div class="hc-img">
+          <svg width="88" height="88" viewBox="0 0 88 88" fill="none">
+            <!-- Símbolo médico / molécula estilizada -->
+            <circle cx="44" cy="44" r="40" stroke="rgba(0,255,179,.2)" stroke-width="1.5"/>
+            <circle cx="44" cy="44" r="26" stroke="rgba(0,255,179,.15)" stroke-width="1"/>
+            <!-- Cruz médica -->
+            <rect x="38" y="22" width="12" height="44" rx="2"
+                  fill="rgba(0,255,179,.12)" stroke="rgba(0,255,179,.4)" stroke-width="1.5"/>
+            <rect x="22" y="38" width="44" height="12" rx="2"
+                  fill="rgba(0,255,179,.12)" stroke="rgba(0,255,179,.4)" stroke-width="1.5"/>
+            <circle cx="44" cy="44" r="5" fill="rgba(0,255,179,.55)"/>
+          </svg>
+        </div>
+        <div class="hc-body">
+          <span class="hc-tag">Urgente</span>
+          <h3 class="hc-title">Monjaro Negado: Decisão Judicial em 24 Horas é Possível</h3>
+          <p class="hc-excerpt">A tirzepatida tem amparo científico e jurídico. Tribunais têm concedido liminares em menos de 24h obrigando planos a fornecer o medicamento.</p>
+          <div class="hc-meta">
+            <div class="hc-author">
+              <div class="av">KM</div>
+              <span>Kayo Melo Advogados</span>
+            </div>
+            <span>5 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- MONJARO DESTAQUE ======================================== -->
+  <section class="monjaro-sec" id="monjaro">
+    <div class="container">
+      <div class="monjaro-hero">
+
+        <div class="reveal">
+          <div class="monjaro-badge">⚕ Caso em Alta</div>
+          <h2 class="monjaro-title">
+            Monjaro (Tirzepatida):<br/>
+            <em>Seu Direito Existe</em>
+          </h2>
+          <p class="monjaro-desc">
+            O Monjaro é aprovado pela ANVISA para tratamento de diabetes tipo 2 e obesidade. A negativa do plano de saúde, mesmo com prescrição médica, é ilegal e pode ser revertida judicialmente com rapidez. Nosso escritório já obteve dezenas de liminares favoráveis em todo o país.
+          </p>
+
+          <div class="monjaro-stats">
+            <div class="stat-box">
+              <span class="stat-num">94%</span>
+              <span class="stat-label">de liminares concedidas</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num">24h</span>
+              <span class="stat-label">tempo médio p/ liminar</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num">+120</span>
+              <span class="stat-label">casos resolvidos</span>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+            <button class="btn-primary">Quero Acionar Meu Plano</button>
+            <button class="btn-outline">Entender Meus Direitos</button>
+          </div>
+        </div>
+
+        <div class="monjaro-visual reveal">
+          <div class="monjaro-card-main">
+            <div class="monjaro-pill">ANVISA ✓</div>
+            <div class="monjaro-card-img">
+              <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+                <!-- Molécula estilizada -->
+                <circle cx="50" cy="50" r="46" stroke="rgba(0,255,179,.15)" stroke-width="1.5" stroke-dasharray="4 6"/>
+                <circle cx="50" cy="50" r="30" stroke="rgba(0,255,179,.2)" stroke-width="1"/>
+                <!-- Átomos -->
+                <circle cx="50" cy="20" r="7" fill="rgba(0,255,179,.35)" stroke="rgba(0,255,179,.6)" stroke-width="1.5"/>
+                <circle cx="50" cy="80" r="7" fill="rgba(0,255,179,.35)" stroke="rgba(0,255,179,.6)" stroke-width="1.5"/>
+                <circle cx="20" cy="50" r="7" fill="rgba(0,255,179,.35)" stroke="rgba(0,255,179,.6)" stroke-width="1.5"/>
+                <circle cx="80" cy="50" r="7" fill="rgba(0,255,179,.35)" stroke="rgba(0,255,179,.6)" stroke-width="1.5"/>
+                <!-- Ligações -->
+                <line x1="50" y1="27" x2="50" y2="73" stroke="rgba(0,255,179,.3)" stroke-width="1.5"/>
+                <line x1="27" y1="50" x2="73" y2="50" stroke="rgba(0,255,179,.3)" stroke-width="1.5"/>
+                <!-- Centro -->
+                <circle cx="50" cy="50" r="8" fill="rgba(0,255,179,.5)" stroke="rgba(0,255,179,.8)" stroke-width="1.5"/>
+                <circle cx="50" cy="50" r="3" fill="rgba(0,255,179,.9)"/>
+              </svg>
+            </div>
+            <div class="monjaro-card-body">
+              <div class="tags">
+                <span class="tag">Diabetes Tipo 2</span>
+                <span class="tag">Obesidade</span>
+                <span class="tag">Tirzepatida</span>
+              </div>
+              <h3 class="bc-title" style="font-size:1rem;margin-bottom:.7rem;">
+                O Que é o Monjaro e Por Que Planos Negam?
+              </h3>
+              <p class="bc-excerpt" style="margin-bottom:0;-webkit-line-clamp:4;">
+                A tirzepatida atua em dois receptores hormonais (GIP e GLP-1), sendo considerada um avanço no tratamento de DM2 e obesidade. Os planos alegam "não cobertura" ou "uso off-label", argumentos que o Judiciário tem sistematicamente rejeitado.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ARTIGOS EM DESTAQUE ===================================== -->
+  <section class="feat-sec" id="artigos">
+    <div class="container">
+      <div class="section-header reveal">
+        <div>
+          <div class="eyebrow">Em Destaque</div>
+          <h2 class="section-title">Análises <em>Recentes</em></h2>
+        </div>
+        <a href="#" class="section-link">
+          Ver todos
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+            <path d="M2.5 6.5h8M6.5 2.5l4 4-4 4" stroke="currentColor"
+                  stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="feat-grid reveal">
+        <div class="feat-main">
+          <div class="feat-img">
+            <svg width="90" height="90" viewBox="0 0 90 90" fill="none">
+              <circle cx="45" cy="45" r="42" stroke="rgba(0,255,179,.18)" stroke-width="1.5"/>
+              <rect x="37" y="18" width="16" height="54" rx="3"
+                    fill="rgba(0,255,179,.08)" stroke="rgba(0,255,179,.38)" stroke-width="1.5"/>
+              <rect x="18" y="37" width="54" height="16" rx="3"
+                    fill="rgba(0,255,179,.08)" stroke="rgba(0,255,179,.38)" stroke-width="1.5"/>
+              <circle cx="45" cy="45" r="6" fill="rgba(0,255,179,.55)"/>
+            </svg>
+          </div>
+          <div class="feat-body">
+            <div class="tags">
+              <span class="tag">Monjaro</span>
+              <span class="tag">Liminar</span>
+              <span class="tag">Plano de Saúde</span>
+            </div>
+            <h3 class="bc-title" style="font-size:1.18rem;margin-bottom:.8rem;">
+              Como Obter Liminar Para Fornecimento de Monjaro em 24 Horas: Passo a Passo Jurídico
+            </h3>
+            <p class="bc-excerpt" style="margin-bottom:1rem;">
+              A tutela de urgência é o instrumento mais eficaz para obrigar o plano de saúde a fornecer o Monjaro imediatamente. Entenda os requisitos, provas necessárias e como nosso escritório atua para garantir seu acesso ao medicamento.
+            </p>
+            <div class="bc-footer">
+              <div class="hc-author">
+                <div class="av">KM</div>
+                <div>
+                  <div style="font-size:.78rem;color:var(--t1);font-weight:600;">Kayo Melo Advogados</div>
+                  <div style="font-size:.7rem;color:var(--tm);">18 Jun 2025</div>
+                </div>
+              </div>
+              <span class="bc-read">Ler artigo →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="feat-right">
+          <div class="feat-sub">
+            <div class="feat-sub-img">
+              <div class="feat-sub-img-in t2">
+                <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
+                  <circle cx="19" cy="19" r="17" stroke="rgba(0,255,179,.35)" stroke-width="1.5"/>
+                  <path d="M19 8 L30 22 L19 30 L8 22 Z"
+                        stroke="rgba(0,255,179,.5)" stroke-width="1.5" fill="none"/>
+                  <circle cx="19" cy="19" r="3.5" fill="rgba(0,255,179,.6)"/>
+                </svg>
+              </div>
+            </div>
+            <div class="tags"><span class="tag">Oncologia</span><span class="tag">Urgência</span></div>
+            <h4 class="bc-title" style="font-size:.9rem;">
+              Plano Negou Quimioterapia? Veja Como Garantir o Tratamento Oncológico por Decisão Judicial
+            </h4>
+            <div class="bc-footer" style="padding-top:.7rem;">
+              <span style="font-size:.72rem;color:var(--tm);">Kayo Melo Adv. · 10 Jun 2025</span>
+              <span class="bc-read">Ler →</span>
+            </div>
+          </div>
+          <div class="feat-sub">
+            <div class="feat-sub-img">
+              <div class="feat-sub-img-in t3">
+                <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
+                  <rect x="8" y="8" width="22" height="22" rx="2"
+                        stroke="rgba(0,255,179,.4)" stroke-width="1.5" fill="none"/>
+                  <line x1="8" y1="19" x2="30" y2="19" stroke="rgba(0,255,179,.25)" stroke-width="1"/>
+                  <line x1="19" y1="8" x2="19" y2="30" stroke="rgba(0,255,179,.25)" stroke-width="1"/>
+                  <circle cx="19" cy="19" r="4" fill="rgba(0,255,179,.45)"/>
+                </svg>
+              </div>
+            </div>
+            <div class="tags"><span class="tag">Cirurgia</span><span class="tag">Cobertura</span></div>
+            <h4 class="bc-title" style="font-size:.9rem;">
+              Cirurgia Bariátrica Negada pelo Plano: ANS e Judiciário Garantem Seu Direito
+            </h4>
+            <div class="bc-footer" style="padding-top:.7rem;">
+              <span style="font-size:.72rem;color:var(--tm);">Kayo Melo Adv. · 2 Jun 2025</span>
+              <span class="bc-read">Ler →</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- BLOG GRID =============================================== -->
+  <section class="blog-sec">
+    <div class="container">
+      <div class="section-header reveal">
+        <div>
+          <div class="eyebrow">Publicações</div>
+          <h2 class="section-title">Todos os <em>Artigos</em></h2>
+        </div>
+      </div>
+
+      <div class="blog-grid">
+
+        <article class="blog-card reveal">
+          <div class="bc-img"><div class="bc-img-in t1">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+              <rect x="20" y="8" width="10" height="34" rx="2" fill="rgba(0,255,179,.12)" stroke="rgba(0,255,179,.45)" stroke-width="1.5"/>
+              <rect x="8" y="20" width="34" height="10" rx="2" fill="rgba(0,255,179,.12)" stroke="rgba(0,255,179,.45)" stroke-width="1.5"/>
+              <circle cx="25" cy="25" r="4" fill="rgba(0,255,179,.55)"/>
+            </svg>
+          </div></div>
+          <div class="bc-body">
+            <div class="tags"><span class="tag">Monjaro</span><span class="tag">Obesidade</span></div>
+            <h3 class="bc-title">Monjaro Off-Label: O Que Diz a Lei e Por Que o Plano Não Pode Negar</h3>
+            <p class="bc-excerpt">O argumento de "uso off-label" é frequentemente usado pelos planos, mas a jurisprudência do STJ e do CNJ é clara: a prescrição médica fundamentada obriga a cobertura.</p>
+            <div class="bc-footer">
+              <span>Kayo Melo Adv. · 15 Jun 2025</span>
+              <span class="bc-read">Ler <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="display:inline"><path d="M1.5 5.5h8M5.5 1.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card reveal">
+          <div class="bc-img"><div class="bc-img-in t2">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+              <circle cx="25" cy="18" r="8" stroke="rgba(0,255,179,.45)" stroke-width="1.5" fill="rgba(0,255,179,.1)"/>
+              <path d="M10 42 C10 32 40 32 40 42" stroke="rgba(0,255,179,.4)" stroke-width="1.5" fill="none"/>
+              <circle cx="25" cy="18" r="3" fill="rgba(0,255,179,.6)"/>
+            </svg>
+          </div></div>
+          <div class="bc-body">
+            <div class="tags"><span class="tag">ANS</span><span class="tag">Reclamação</span></div>
+            <h3 class="bc-title">Como Abrir Reclamação na ANS Contra Negativa do Plano de Saúde</h3>
+            <p class="bc-excerpt">A ANS tem poder para punir planos e forçar coberturas. Veja o passo a passo para formalizar sua reclamação e os prazos que o plano é obrigado a cumprir.</p>
+            <div class="bc-footer">
+              <span>Kayo Melo Adv. · 8 Jun 2025</span>
+              <span class="bc-read">Ler <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="display:inline"><path d="M1.5 5.5h8M5.5 1.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card reveal">
+          <div class="bc-img"><div class="bc-img-in t3">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+              <circle cx="25" cy="25" r="20" stroke="rgba(0,255,179,.2)" stroke-width="1" stroke-dasharray="3 5"/>
+              <path d="M25 10 L38 25 L25 40 L12 25 Z" stroke="rgba(0,255,179,.42)" stroke-width="1.5" fill="rgba(0,255,179,.06)"/>
+              <circle cx="25" cy="25" r="3.5" fill="rgba(0,255,179,.5)"/>
+            </svg>
+          </div></div>
+          <div class="bc-body">
+            <div class="tags"><span class="tag">GLP-1</span><span class="tag">Ozempic</span></div>
+            <h3 class="bc-title">Ozempic, Wegovy e Monjaro: Diferenças e Direitos de Cobertura em 2025</h3>
+            <p class="bc-excerpt">Entenda as diferenças entre os análogos de GLP-1 e como cada um se enquadra nas regras de cobertura obrigatória dos planos de saúde no Brasil.</p>
+            <div class="bc-footer">
+              <span>Kayo Melo Adv. · 1 Jun 2025</span>
+              <span class="bc-read">Ler <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="display:inline"><path d="M1.5 5.5h8M5.5 1.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card reveal">
+          <div class="bc-img"><div class="bc-img-in t4">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+              <polygon points="25,6 44,40 6,40" stroke="rgba(0,255,179,.4)" stroke-width="1.5" fill="rgba(0,255,179,.05)"/>
+              <circle cx="25" cy="30" r="3.5" fill="rgba(0,255,179,.5)"/>
+              <line x1="25" y1="14" x2="25" y2="22" stroke="rgba(0,255,179,.4)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div></div>
+          <div class="bc-body">
+            <div class="tags"><span class="tag">Danos Morais</span><span class="tag">Indenização</span></div>
+            <h3 class="bc-title">Negativa Indevida do Plano: Você Pode Receber Indenização por Danos Morais</h3>
+            <p class="bc-excerpt">Além de obrigar a cobertura, o Judiciário tem condenado planos ao pagamento de indenizações por danos morais quando a negativa é abusiva ou causa sofrimento ao paciente.</p>
+            <div class="bc-footer">
+              <span>Kayo Melo Adv. · 24 Mai 2025</span>
+              <span class="bc-read">Ler <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="display:inline"><path d="M1.5 5.5h8M5.5 1.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card reveal">
+          <div class="bc-img"><div class="bc-img-in t5">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+              <rect x="12" y="8" width="26" height="34" rx="3" stroke="rgba(0,255,179,.4)" stroke-width="1.5" fill="none"/>
+              <line x1="18" y1="17" x2="32" y2="17" stroke="rgba(0,255,179,.45)" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="18" y1="24" x2="32" y2="24" stroke="rgba(0,255,179,.35)" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="18" y1="31" x2="26" y2="31" stroke="rgba(0,255,179,.25)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div></div>
+          <div class="bc-body">
+            <div class="tags"><span class="tag">Reembolso</span><span class="tag">SUS</span></div>
+            <h3 class="bc-title">Reembolso de Medicamento: Quando e Como Exigir do Plano ou do Estado</h3>
+            <p class="bc-excerpt">Se você pagou por um medicamento que deveria ser coberto pelo plano ou pelo SUS, é possível buscar reembolso retroativo judicialmente. Veja os requisitos.</p>
+            <div class="bc-footer">
+              <span>Kayo Melo Adv. · 16 Mai 2025</span>
+              <span class="bc-read">Ler <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="display:inline"><path d="M1.5 5.5h8M5.5 1.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card reveal">
+          <div class="bc-img"><div class="bc-img-in t6">
+            <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
+              <circle cx="25" cy="25" r="19" stroke="rgba(0,255,179,.35)" stroke-width="1.5"/>
+              <path d="M16 25 L22 31 L34 19" stroke="rgba(0,255,179,.7)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div></div>
+          <div class="bc-body">
+            <div class="tags"><span class="tag">Rol ANS</span><span class="tag">2025</span></div>
+            <h3 class="bc-title">Rol da ANS 2025: Quais Procedimentos Passaram a Ser Obrigatórios?</h3>
+            <p class="bc-excerpt">A ANS atualiza periodicamente a lista de cobertura mínima obrigatória. Conheça os novos procedimentos incluídos em 2025 e como exigir cobertura dos planos.</p>
+            <div class="bc-footer">
+              <span>Kayo Melo Adv. · 8 Mai 2025</span>
+              <span class="bc-read">Ler <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="display:inline"><path d="M1.5 5.5h8M5.5 1.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- COMO AGIR =============================================== -->
+  <section class="steps-sec" id="como-agir">
+    <div class="container">
+      <div class="section-header reveal">
+        <div>
+          <div class="eyebrow">Guia Prático</div>
+          <h2 class="section-title">Como Agir Quando o<br/><em>Plano Nega</em></h2>
+        </div>
+      </div>
+
+      <div class="steps-grid reveal">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <div class="step-icon">📋</div>
+          <h3 class="step-title">Documente a Negativa</h3>
+          <p class="step-desc">Exija a negativa por escrito com o código e justificativa. Guarde a prescrição médica, laudos e comprovante do pedido ao plano. Esses documentos são essenciais para a ação judicial.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <div class="step-icon">⚖️</div>
+          <h3 class="step-title">Consulte um Advogado</h3>
+          <p class="step-desc">Em casos urgentes como o Monjaro, a ação de tutela de urgência pode ser impetrada em horas. Nossa equipe analisa gratuitamente e indica o melhor caminho jurídico.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <div class="step-icon">🏛️</div>
+          <h3 class="step-title">Tutela de Urgência</h3>
+          <p class="step-desc">O juiz pode ordenar a cobertura imediata em decisão liminar, antes mesmo do plano ser ouvido. Em 94% dos casos de Monjaro, obtemos liminar nas primeiras 24-48 horas.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">04</div>
+          <div class="step-icon">✅</div>
+          <h3 class="step-title">Cobertura Garantida</h3>
+          <p class="step-desc">Com a liminar em mãos, o plano é obrigado a cobrir o tratamento sob pena de multa diária (astreintes). Também avaliamos danos morais pela negativa indevida.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA URGENTE ============================================= -->
+  <section class="cta-sec">
+    <div class="container">
+      <div class="cta-box reveal">
+        <div>
+          <div class="cta-eyebrow">Atendimento Urgente</div>
+          <h2 class="cta-title">Seu Plano Negou o Monjaro?<br/>Aja Agora — Cada Dia Importa.</h2>
+          <p class="cta-desc">Casos de negativa de medicamento são urgentes. Nossa equipe atende em regime de prioridade e pode protocolar sua ação em menos de 24 horas. Consulta inicial gratuita.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn-primary" style="justify-content:center;"
+            href="https://wa.me/5500000000000?text=Olá!%20Meu%20plano%20negou%20o%20Monjaro.%20Preciso%20de%20ajuda%20urgente."
+            target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            WhatsApp Urgente
+          </a>
+          <button class="btn-outline" style="justify-content:center;">Agendar Consulta</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SOBRE =================================================== -->
+  <section class="about-sec" id="sobre">
+    <div class="container">
+      <div class="about-inner">
+        <div class="about-vis reveal">
+          <div class="about-portrait">
+            <svg width="175" height="175" viewBox="0 0 175 175" fill="none">
+              <rect x="10" y="10" width="155" height="155" rx="1"
+                    stroke="rgba(0,255,179,.08)" stroke-width="2"/>
+              <rect x="22" y="22" width="131" height="131" rx="1"
+                    stroke="rgba(0,255,179,.05)" stroke-width="1.5"/>
+              <path d="M42 48 L42 128 M42 88 L88 48 M42 88 L88 128"
+                    stroke="rgba(0,255,179,.35)" stroke-width="5"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M96 128 L96 48 L133 88 L133 48"
+                    stroke="rgba(0,255,179,.35)" stroke-width="5"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Cruz decorativa -->
+              <rect x="80" y="105" width="14" height="40" rx="2" fill="rgba(0,255,179,.12)" stroke="rgba(0,255,179,.3)" stroke-width="1"/>
+              <rect x="68" y="117" width="38" height="14" rx="2" fill="rgba(0,255,179,.12)" stroke="rgba(0,255,179,.3)" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="about-accent">
+            <span class="about-num">+500</span>
+            <span class="about-label">Negativas Revertidas</span>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="eyebrow">Sobre a Área de Saúde</div>
+          <h2 class="section-title">Kayo Melo <em>Saúde</em></h2>
+          <p class="about-bio">
+            A área de Direito à Saúde do escritório Kayo Melo Advogados atua exclusivamente na defesa dos pacientes contra negativas abusivas de planos de saúde e na garantia de acesso a medicamentos e tratamentos pelo SUS.
+          </p>
+          <div class="about-creds">
+            <div class="cred">Especialistas em ações contra planos de saúde há mais de 10 anos</div>
+            <div class="cred">Mais de 500 negativas revertidas judicialmente em todo o Brasil</div>
+            <div class="cred">94% de taxa de sucesso em liminares para Monjaro e análogos GLP-1</div>
+            <div class="cred">Atendimento em regime de urgência — protocolo em até 24 horas</div>
+            <div class="cred">Consulta inicial gratuita para análise do caso</div>
+          </div>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+            <button class="btn-primary">Consulta Gratuita</button>
+            <button class="btn-outline">Nossa Equipe</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- NEWSLETTER ============================================== -->
+  <section class="nl-sec" id="contato">
+    <div class="container">
+      <div class="nl-box reveal">
+        <div class="eyebrow" style="justify-content:center;margin-bottom:.9rem;">Fique Informado</div>
+        <h2 class="nl-title">Alertas de <em style="font-style:italic;color:var(--neo)">Saúde Jurídica</em></h2>
+        <p class="nl-desc">Receba atualizações sobre novos medicamentos cobertos, mudanças no Rol da ANS e vitórias judiciais relevantes para seu tratamento.</p>
+        <div class="nl-form">
+          <input class="nl-input" type="email" placeholder="Seu melhor e-mail…" />
+          <button class="btn-primary" id="subBtn">Inscrever-se</button>
+        </div>
+        <p style="margin-top:1rem;font-size:.7rem;color:var(--tm);">Sem spam. Apenas informações que podem salvar seu tratamento.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER ================================================== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <a href="#" class="nav-logo" style="display:inline-flex;margin-bottom:.75rem;">
+            <div class="km-mark">
+              <svg viewBox="0 0 42 42" fill="none">
+                <rect x="1" y="1" width="40" height="40" rx="1"
+                      stroke="currentColor" stroke-width="1.8" style="color:var(--t1)"/>
+                <rect x="5" y="5" width="32" height="32" rx=".5"
+                      stroke="currentColor" stroke-width=".8" style="color:var(--t1);opacity:.35"/>
+                <path d="M10 13 L10 29 M10 21 L18 13 M10 21 L18 29"
+                      stroke="currentColor" stroke-width="2.3"
+                      stroke-linecap="round" stroke-linejoin="round" style="color:var(--t1)"/>
+                <path d="M20 29 L20 13 L26 21 L32 13 L32 29"
+                      stroke="currentColor" stroke-width="2.3"
+                      stroke-linecap="round" stroke-linejoin="round" style="color:var(--t1)"/>
+              </svg>
+            </div>
+            <div class="logo-text">
+              <span class="logo-name">Kayo Melo</span>
+              <span class="logo-sub">Direito à Saúde</span>
+            </div>
+          </a>
+          <p class="fbrand">Especialistas em reverter negativas de planos de saúde. Seu direito ao tratamento é inegociável.</p>
+          <div class="fsocial">
+            <a class="fsoc" href="#" title="Instagram">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a class="fsoc" href="#" title="LinkedIn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a class="fsoc" href="#" title="YouTube">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.97C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 0 0 1.95-1.97A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <div class="fcol-title">Navegação</div>
+          <ul class="flinks">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#monjaro">Monjaro</a></li>
+            <li><a href="#artigos">Artigos</a></li>
+            <li><a href="#como-agir">Como Agir</a></li>
+            <li><a href="kayo-melo-advogados.html">Portal Jurídico</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="fcol-title">Especialidades</div>
+          <ul class="flinks">
+            <li><a href="#">Negativa de Monjaro</a></li>
+            <li><a href="#">Planos de Saúde</a></li>
+            <li><a href="#">Medicamentos — ANS</a></li>
+            <li><a href="#">Cirurgias Negadas</a></li>
+            <li><a href="#">Danos Morais</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="fcol-title">Contato Urgente</div>
+          <ul class="flinks">
+            <li><a href="tel:+5500000000000">(00) 9 0000-0000</a></li>
+            <li><a href="mailto:saude@kayomelo.adv.br">saude@kayomelo.adv.br</a></li>
+            <li><a href="#">Atendimento 24h (urgências)</a></li>
+            <li><a href="#">Consulta inicial gratuita</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="fcopy">© 2025 Kayo Melo Advogados — Direito à Saúde. Todos os direitos reservados.</p>
+        <p class="fcopy">As informações deste site não constituem aconselhamento jurídico ou médico.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- BOTÕES FLUTUANTES ======================================= -->
+  <div class="float-wrap">
+    <a class="fbtn ft" href="https://t.me/kayomeloadvogados"
+       target="_blank" rel="noopener" data-label="Telegram">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+      </svg>
+    </a>
+    <a class="fbtn fw"
+       href="https://wa.me/5500000000000?text=Olá!%20Meu%20plano%20de%20saúde%20negou%20meu%20tratamento.%20Preciso%20de%20ajuda."
+       target="_blank" rel="noopener" data-label="WhatsApp">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+      </svg>
+    </a>
+  </div>
+
+
+  <!-- JAVASCRIPT ============================================== -->
+  <script>
+    // THEME
+    const html = document.documentElement;
+    const tBtn = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('km-saude-theme') || 'dark';
+    html.setAttribute('data-theme', saved);
+    tBtn.addEventListener('click', () => {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('km-saude-theme', next);
+    });
+
+    // NAVBAR SCROLL
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', scrollY > 40);
+    }, { passive: true });
+
+    // MOBILE NAV
+    function toggleNav() {
+      document.getElementById('mobileNav').classList.toggle('open');
+    }
+
+    // SCROLL REVEAL
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const i = Array.from(e.target.parentElement.children).indexOf(e.target);
+        setTimeout(() => e.target.classList.add('visible'), Math.min(i * 90, 400));
+        obs.unobserve(e.target);
+      });
+    }, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // NEWSLETTER
+    document.getElementById('subBtn').addEventListener('click', function () {
+      const inp = document.querySelector('.nl-input');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inp.value.trim())) {
+        inp.style.borderColor = '#e05a5a';
+        inp.focus();
+        setTimeout(() => inp.style.borderColor = '', 2000);
+        return;
+      }
+      this.textContent = '✓ Inscrito!';
+      this.style.background = '#00b37a';
+      inp.value = ''; inp.disabled = true; this.disabled = true;
+      setTimeout(() => {
+        this.textContent = 'Inscrever-se'; this.style.background = '';
+        inp.disabled = false; this.disabled = false;
+      }, 4000);
+    });
+
+    // SMOOTH ANCHORS
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (id === '#') return;
+        const t = document.querySelector(id);
+        if (t) { e.preventDefault(); window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - 72, behavior: 'smooth' }); }
+      });
+    });
+
+    // 3-D CARD HOVER
+    document.querySelectorAll('.blog-card').forEach(c => {
+      c.addEventListener('mousemove', e => {
+        const r = c.getBoundingClientRect();
+        const x = ((e.clientX - r.left) / r.width  - .5) * 7;
+        const y = ((e.clientY - r.top)  / r.height - .5) * 7;
+        c.style.transform = `translateY(-6px) rotateX(${-y}deg) rotateY(${x}deg)`;
+      });
+      c.addEventListener('mouseleave', () => c.style.transform = '');
+    });
+
+    // STAT COUNTER ANIMATION
+    const statNums = document.querySelectorAll('.stat-num');
+    const statObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const text = el.textContent;
+        const num = parseFloat(text.replace(/[^0-9.]/g,''));
+        const suffix = text.replace(/[0-9.]/g,'');
+        let start = 0;
+        const duration = 1200;
+        const step = num / (duration / 16);
+        const timer = setInterval(() => {
+          start += step;
+          if (start >= num) { el.textContent = text; clearInterval(timer); return; }
+          el.textContent = (Number.isInteger(num) ? Math.floor(start) : start.toFixed(0)) + suffix;
+        }, 16);
+        statObs.unobserve(el);
+      });
+    }, { threshold: .5 });
+    statNums.forEach(el => statObs.observe(el));
+  </script>
+
+</body>
+</html>
